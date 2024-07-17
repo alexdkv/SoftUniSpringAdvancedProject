@@ -1,0 +1,200 @@
+@import url(https://fonts.googleapis.com/css?family=PT+Sans|PT+Serif);
+
+/*
+    #d01919 - cherveno
+    #d03045 - cherveno bukvi
+    #efefef - siv background
+    #a9a7b3 - siv bukvi
+*/
+
+/* HEADER */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font: 12px/1.5 "PT Sans", sans-serif;
+}
+header {
+  background-color: #d01919;
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  color: white;
+  padding: 15px;
+}
+header .mobile,
+.geo-point {
+  padding: 10px;
+}
+header .socials {
+  display: flex;
+  flex-direction: row;
+  color: white;
+  list-style: none;
+}
+header .socials a {
+  color: white;
+  list-style-type: none;
+  padding: 5px;
+}
+
+/* MAIN */
+
+main {
+  background-image: url(/images/fitness-main.jpg);
+  height: 550px;
+  width: 100%;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+main .main-nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+main ul {
+  margin: 20px;
+  list-style-type: none;
+}
+main .main-nav a {
+  padding: 20px 20px;
+  color: white;
+  text-decoration: none;
+}
+
+main .main-container {
+  color: white;
+  text-align: center;
+  width: 100%;
+  margin-top: 50px;
+  padding: 50px;
+  padding-bottom: 160px;
+}
+main h2 {
+  font-size: 60px;
+}
+main p {
+  margin: 30px;
+  font-size: 14px;
+}
+main .button {
+  color: white;
+  text-decoration: none;
+  border: 1px solid #d01919;
+  border-radius: 5px;
+  background-color: #d01919;
+  padding: 7px 13px;
+  margin: 30px;
+}
+
+/* WELCOME */
+.welcome {
+  padding-bottom: 30px;
+}
+.welcome h3 {
+  text-align: center;
+  font-size: 24px;
+  padding: 20px;
+}
+.welcome .divider {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 2px;
+  width: 35px;
+  background-color: #d01919;
+}
+.welcome .welcome-sections {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.welcome .welcome-sections .tools {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 20%;
+  margin-top: 25px;
+}
+.welcome .welcome-sections .tools h6 {
+  color: #d03045;
+  font-size: 14px;
+  padding: 10px;
+}
+.welcome .welcome-sections .tools p {
+  text-align: center;
+  max-width: 70%;
+}
+.welcome .welcome-sections .tools img {
+  width: 15%;
+  height: auto;
+}
+
+/* COACHES */
+
+.coaches {
+  background-color: #efefef;
+  padding-bottom: 30px;
+}
+.coaches h3 {
+  text-align: center;
+  font-size: 24px;
+  padding: 20px;
+}
+.coaches .divider {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 2px;
+  width: 35px;
+  background-color: #d01919;
+}
+.coaches .coaches-sections {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.coaches .coaches-sections .coaches-cards {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 20%;
+  margin-top: 25px;
+}
+.coaches .coaches-sections .coaches-cards h5 {
+  font-size: 16px;
+  padding-top: 10px;
+}
+.coaches .coaches-sections .coaches-cards h6 {
+  color: #d03045;
+  font-size: 12px;
+  padding: 10px;
+}
+.coaches .coaches-sections .coaches-cards p {
+  color: #a9a7b3;
+  text-align: center;
+  max-width: 70%;
+}
+.coaches .coaches-sections .coaches-cards img {
+  width: 70%;
+  height: auto;
+  border-radius: 5px;
+}
+
+/* FOOTER */
+
+footer {
+  background-color: #d01919;
+  width: 100%;
+  height: 30px;
+}
+footer p {
+  text-align: center;
+  padding-top: 5px;
+}
