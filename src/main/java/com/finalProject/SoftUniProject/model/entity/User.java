@@ -2,6 +2,7 @@ package com.finalProject.SoftUniProject.model.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
+import org.hibernate.validator.constraints.Length;
 
 import java.util.List;
 
@@ -10,6 +11,7 @@ import java.util.List;
 public class User extends BaseEntity{
 
     @Column(unique = true, nullable = false)
+    @Length(min = 3, max = 20)
     private String username;
 
     @Column(nullable = false)
