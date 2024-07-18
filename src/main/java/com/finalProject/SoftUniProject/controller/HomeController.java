@@ -12,4 +12,14 @@ public class HomeController {
 
         return new ModelAndView("home");
     }
+    @GetMapping("/register")
+    public ModelAndView register(){
+
+        return new ModelAndView("register");
+    }
+    @GetMapping("/login")
+    public ModelAndView login(){
+
+        return new ModelAndView("login");
+    }
 }

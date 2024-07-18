@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -14,18 +14,9 @@
     <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-<header>
-    <p><span class="mobile"><i class="fa-solid fa-mobile"></i></span>1-800-235-658</p>
-    <p><span class="geo-point"><i class="fa-solid fa-location-dot"></i></span>Bulgaria, Mladost 1, bl.105</p>
-    <span class="socials">
-            <ul class="socials">
-                <li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
-                <li><a href="#"><i class="fa-brands fa-instagram"></i></a></li>
-                <li><a href="#"><i class="fa-brands fa-twitter"></i></a></li>
-                <li><a href="#"><i class="fa-brands fa-youtube"></i></a></li>
-            </ul>
-        </span>
-</header>
+<head th:replace="fragments/navbar::head"></head>
+
+<header th:replace="fragments/navbar::nav"></header>
 
 <main>
         <span class="main-nav">
