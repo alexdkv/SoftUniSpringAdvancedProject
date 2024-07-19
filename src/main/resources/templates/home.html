@@ -1,5 +1,7 @@
 <!doctype html>
-<html lang="en">
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
@@ -8,7 +10,8 @@
     <title>Document</title>
 </head>
 <body>
-home
-home
+    Welcome
+    <th:block sec:authorize="isAuthenticated()" sec:authentication='name'></th:block>
+    <th:block sec:authorize="!isAuthenticated()" >Anonymous</th:block>
 </body>
 </html>

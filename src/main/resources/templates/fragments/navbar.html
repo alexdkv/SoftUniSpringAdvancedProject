@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -8,25 +9,34 @@
     <link rel="stylesheet" href="/css/reset-css.css"/>
     <link rel="stylesheet" href="/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="/css/styles.css"/>
+    <link rel="stylesheet" href="/css/style.css"/>
 </head>
 <body>
 <header>
     <nav>
         <div class="home">
-            <a href="/">Fitness</a>
+            <a href="/home">Fitness</a>
         </div>
         <div class="links">
-            <li>
-                <a href="/">Login</a>
+            <li sec:authorize="isAuthenticated()">
+                <a href="/">Coach</a>
+            </li>
+            <li sec:authorize="isAuthenticated()">
+                <a href="/">Exercises</a>
+            </li>
+            <li sec:authorize="!isAuthenticated()">
+                <a href="/login">Login</a>
             </li>
 
-            <li>
-                <a href="/">Register</a>
+            <li sec:authorize="!isAuthenticated()">
+                <a href="/register">Register</a>
             </li>
 
-            <li>
-                <a href="/">Logout</a>
-            </li>
+            <form th:method="post"
+                  th:action="@{/logout}"
+                  sec:authorize="isAuthenticated()">
+                <input class="btn btn-link" type="submit" value="Logout"/>
+            </form>
         </div>
     </nav>
 </header>
