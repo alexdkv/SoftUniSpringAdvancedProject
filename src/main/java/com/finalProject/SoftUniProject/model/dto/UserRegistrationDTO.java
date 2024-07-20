@@ -1,5 +1,6 @@
 package com.finalProject.SoftUniProject.model.dto;
 
+import com.finalProject.SoftUniProject.model.enums.UserRoleENUM;
 import jakarta.validation.constraints.*;
 
 public class UserRegistrationDTO {
@@ -19,6 +20,9 @@ public class UserRegistrationDTO {
     @NotBlank(message = "Email must not be empty!")
     @Email
     private String email;
+
+    @NotNull(message = "Role must be selected!")
+    private UserRoleENUM role;
 
     public  String getUsername() {
         return username;
@@ -50,5 +54,13 @@ public class UserRegistrationDTO {
 
     public void setConfirmPassword(@NotEmpty String confirmPassword) {
         this.confirmPassword = confirmPassword;
+    }
+
+    public  UserRoleENUM getRole() {
+        return role;
+    }
+
+    public void setRole( UserRoleENUM role) {
+        this.role = role;
     }
 }

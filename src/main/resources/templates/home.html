@@ -1,17 +1,89 @@
-<!doctype html>
-<html lang="en"
-      xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness Site</title>
+    <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+            integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+    />
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-    Welcome
-    <th:block sec:authorize="isAuthenticated()" sec:authentication='name'></th:block>
-    <th:block sec:authorize="!isAuthenticated()" >Anonymous</th:block>
+<head th:replace="fragments/navbar::head"></head>
+
+<header th:replace="fragments/navbar::nav"></header>
+
+<main>
+        <span class="main-nav">
+
+        </span>
+    <div class="main-container">
+        <body>
+        Welcome
+        <th:block sec:authorize="isAuthenticated()" sec:authentication='name'></th:block>
+        <th:block sec:authorize="!isAuthenticated()" >Anonymous</th:block>
+        </body>
+    </div>
+</main>
+
+<div class="welcome">
+    <h3>Welcome</h3>
+    <div class="divider"></div>
+    <div class="welcome-sections">
+        <section class="tools">
+            <img src="/images/multiple-users-silhouette.png" alt="asdas">
+            <h6>Qualified Coaches</h6>
+            <p>Our coaches have years of experience in various types of fitness and sports.</p>
+        </section>
+
+        <section class="tools">
+            <img src="/images/thumbs-up-hand-symbol.png" alt="asdasd">
+            <h6>Individual Approach</h6>
+            <p>Every client of GYM has a personalized program of training and nutrition.</p>
+        </section>
+
+        <section class="tools">
+            <img src="/images/dumbbell.png" alt="">
+            <h6>Fitness Equipment</h6>
+            <p>We cooperate with leading fitness equipment suppliers to give you the superior results.</p>
+        </section>
+    </div>
+</div>
+
+<div class="coaches">
+    <h3>Coaches</h3>
+    <div class="divider"></div>
+    <div class="coaches-sections">
+        <section class="coaches-cards">
+            <img src="/images/perkins.jpg" alt="">
+            <h5 class="name">Pepa Perkins</h5>
+            <h6>Fitness</h6>
+            <p>Emily can teach you all peculiarities of fitness and aerobics in a group or individually.</p>
+        </section>
+
+        <section class="coaches-cards">
+            <img src="/images/minela.jpg" alt="">
+            <h5 class="name">Samantha Minela</h5>
+            <h6>Yoga</h6>
+            <p>Our leading yoga coach, Samantha will help you reach full harmony with your body.</p>
+        </section>
+
+        <section class="coaches-cards">
+            <img src="/images/ortiz.jpg" alt="">
+            <h5 class="name">Austin Ortiz</h5>
+            <h6>Bodybuilding</h6>
+            <p>Austin is not only our most called-for coach, but also a winner of many championships.</p>
+        </section>
+    </div>
+</div>
+
+<footer>
+    <p>All rights reserved. In Partnership with SoftUni.</p>
+</footer>
 </body>
 </html>

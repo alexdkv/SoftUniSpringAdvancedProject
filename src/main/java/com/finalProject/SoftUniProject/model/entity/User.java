@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import org.hibernate.validator.constraints.Length;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -22,9 +23,21 @@ public class User extends BaseEntity{
     private String email;
 
     @ManyToOne
-    private Coach coach;
+    @JoinColumn(name = "role_id", nullable = false)
+    private Role role;
+
+    @ManyToOne
+    private User coach;
+
+    @OneToMany(mappedBy = "coach")
+    private List<User> trainees;
+
+    @ManyToMany(mappedBy = "users")
+    private List<Exercise> exercises;
 
     public User() {
+        this.trainees = new ArrayList<>();
+        this.exercises = new ArrayList<>();
     }
 
     public String getUsername() {
@@ -43,19 +56,43 @@ public class User extends BaseEntity{
         this.password = password;
     }
 
-    public @Email String getEmail() {
+    public  String getEmail() {
         return email;
     }
 
-    public void setEmail(@Email String email) {
+    public void setEmail( String email) {
         this.email = email;
     }
 
-    public Coach getCoach() {
+    public User getCoach() {
         return coach;
     }
 
-    public void setCoach(Coach coach) {
+    public void setCoach(User coach) {
         this.coach = coach;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+
+    public List<User> getTrainees() {
+        return trainees;
+    }
+
+    public void setTrainees(List<User> trainees) {
+        this.trainees = trainees;
+    }
+
+    public List<Exercise> getExercises() {
+        return exercises;
+    }
+
+    public void setExercises(List<Exercise> exercises) {
+        this.exercises = exercises;
     }
 }

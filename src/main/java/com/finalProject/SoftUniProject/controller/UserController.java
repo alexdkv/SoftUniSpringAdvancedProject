@@ -50,4 +50,10 @@ public class UserController {
 
         return new ModelAndView("login");
     }
+
+    @GetMapping("/login-error")
+    public ModelAndView loginError(){
+
+        return new ModelAndView("login-error");
+    }
 }
