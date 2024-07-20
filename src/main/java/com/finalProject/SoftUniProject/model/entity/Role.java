@@ -25,7 +25,7 @@ public class Role {
         this.id = id;
     }
 
-    public @NotNull UserRoleENUM getName() {
+    public UserRoleENUM getName() {
         return name;
     }
 
