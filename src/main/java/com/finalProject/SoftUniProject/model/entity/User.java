@@ -35,6 +35,13 @@ public class User extends BaseEntity{
     @ManyToMany(mappedBy = "users")
     private List<Exercise> exercises;
 
+    @OneToMany(mappedBy = "coach")
+    private List<Exercise> addedExercises;
+
+
+
+
+
     public User() {
         this.trainees = new ArrayList<>();
         this.exercises = new ArrayList<>();

@@ -21,21 +21,11 @@ public class Exercise extends BaseEntity{
     @Column(nullable = false)
     private int intensity;
 
-    @ManyToMany
-    @JoinTable(
-            name = "exercise_equipment",
-            joinColumns = @JoinColumn(name = "exercise_id"),
-            inverseJoinColumns = @JoinColumn(name = "equipment_id")
-    )
-    private List<Equipment> equipment;
+    @ManyToOne
+    private Equipment equipment;
 
-    @ManyToMany
-    @JoinTable(
-            name = "coach_exercise",
-            joinColumns = @JoinColumn(name = "exercise_id"),
-            inverseJoinColumns = @JoinColumn(name = "user_id")
-    )
-    private List<User> coaches;
+    @ManyToOne
+    private User coach;
 
     @ManyToMany
     @JoinTable(
@@ -46,7 +36,8 @@ public class Exercise extends BaseEntity{
     private List<User> users;
 
     public Exercise() {
-        this.equipment = new ArrayList<>();
+        this.users = new ArrayList<>();
+
     }
 
     public String getName() {
@@ -73,20 +64,20 @@ public class Exercise extends BaseEntity{
         this.intensity = intensity;
     }
 
-    public List<Equipment> getEquipment() {
+    public Equipment getEquipment() {
         return equipment;
     }
 
-    public void setEquipment(List<Equipment> equipment) {
+    public void setEquipment(Equipment equipment) {
         this.equipment = equipment;
     }
 
-    public List<User> getCoaches() {
-        return coaches;
+    public User getCoach() {
+        return coach;
     }
 
-    public void setCoaches(List<User> coaches) {
-        this.coaches = coaches;
+    public void setCoach(User coach) {
+        this.coach = coach;
     }
 
     public List<User> getUsers() {

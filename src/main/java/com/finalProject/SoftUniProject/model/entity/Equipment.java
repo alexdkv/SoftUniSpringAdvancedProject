@@ -1,9 +1,6 @@
 package com.finalProject.SoftUniProject.model.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 
 import java.util.ArrayList;
@@ -22,11 +19,11 @@ public class Equipment extends BaseEntity{
     @Column
     private int weight;
 
-    @ManyToMany(mappedBy = "equipment")
-    private List<Exercise> usedInExercise;
+    @OneToMany(mappedBy = "equipment")
+    private List<Exercise> exercises;
 
     public Equipment() {
-        this.usedInExercise = new ArrayList<>();
+        this.exercises = new ArrayList<>();
     }
 
     public String getName() {
@@ -53,11 +50,11 @@ public class Equipment extends BaseEntity{
         this.weight = weight;
     }
 
-    public List<Exercise> getUsedInExercise() {
-        return usedInExercise;
+    public List<Exercise> getExercises() {
+        return exercises;
     }
 
-    public void setUsedInExercise(List<Exercise> usedInExercise) {
-        this.usedInExercise = usedInExercise;
+    public void setExercises(List<Exercise> exercises) {
+        this.exercises = exercises;
     }
 }
