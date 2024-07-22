@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/navbar::head"></head>
+<body>
+<header th:replace="fragments/navbar::nav"></header>
+<main>
+    <form class="welcome add-offer-form" method="" action="/">
+        <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark">Add Exercise</span></h1>
+
+        <div class="form-group">
+            <div class="label-holder text-white textCol d-flex justify-content-center">
+                <label for="name" class="h4 mb-2">Exercise Name</label>
+            </div>
+            <input type="text" class="form-control" id="name" name="name"/>
+            <small class="danger">Name error message</small>
+        </div>
+
+        <div class="form-group">
+            <div class="label-holder text-white textCol d-flex justify-content-center">
+                <label for="description" class="h4 mb-2">Description</label>
+            </div>
+            <input type="text" class="form-control" id="description" name="description"/>
+            <small class="danger">description error message</small>
+        </div>
+
+        <div class="form-group">
+            <div class="label-holder text-white textCol d-flex justify-content-center">
+                <label for="intensity" class="h4 mb-2">Intensity</label>
+            </div>
+            <input type="range" class="form-control-range" id="intensity" name="intensity" min="1" max="10" value="5" oninput="this.nextElementSibling.value = this.value">
+            <output class="ml-2">5</output>
+            <small class="danger">intensity error message</small>
+        </div>
+
+        <div class="form-group">
+            <div class="text-white label-holder d-flex justify-content-center">
+                <label for="equipment" class="h4 mb-2">Equipment</label>
+            </div>
+            <select class="browser-default custom-select" id="equipment" name="equipment">
+                <option>###</option>
+                <option></option>
+            </select>
+
+            <small class="danger">Style error message</small>
+        </div>
+
+        <div class="button-holder d-flex justify-content-center">
+            <button type="submit" class="btn btn-info  mb-3">Add Exercise</button>
+        </div>
+
+    </form>
+</main>
+<footer th:replace="fragments/navbar::footer"></footer>
+</body>
+</html>
