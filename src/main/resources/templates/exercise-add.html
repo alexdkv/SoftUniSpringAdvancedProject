@@ -35,7 +35,9 @@
             <div class="label-holder text-white textCol d-flex justify-content-center">
                 <label for="intensity" class="h4 mb-2">Intensity</label>
             </div>
-            <input type="range" class="form-control-range" id="intensity"  min="1" max="10" value="5" oninput="this.nextElementSibling.value = this.value"
+            <input type="range" class="form-control-range"
+                   id="intensity"
+                   min="1" max="10" value="5" oninput="this.nextElementSibling.value = this.value"
                    th:field="*{intensity}">
             <output class="ml-2">5</output>
             <small th:if="${#fields.hasErrors('intensity')}"

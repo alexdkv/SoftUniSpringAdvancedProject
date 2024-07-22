@@ -48,7 +48,7 @@ public class ExerciseService {
         Exercise exercise = new Exercise();
         exercise.setName(exerciseAddBindingModel.getName());
         exercise.setDescription(exerciseAddBindingModel.getDescription());
-        //exercise.setIntensity(exerciseAddBindingModel.getIntensity());
+        exercise.setIntensity(exerciseAddBindingModel.getIntensity());
         exercise.setEquipment(exerciseAddBindingModel.getEquipment());
 
         exercise.setCoach(user.get());
