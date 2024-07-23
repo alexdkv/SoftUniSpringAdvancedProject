@@ -33,6 +33,7 @@ public class EquipmentController {
           if (!hasAddedEquipment){
               ModelAndView modelAndView = new ModelAndView("equipment-add");
               modelAndView.addObject("hasErrors", true);
+              modelAndView.addObject("errorMessage", "This item already exists!");
               return modelAndView;
           }
 
