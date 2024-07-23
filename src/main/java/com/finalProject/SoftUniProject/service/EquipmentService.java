@@ -5,6 +5,8 @@ import com.finalProject.SoftUniProject.model.entity.Equipment;
 import com.finalProject.SoftUniProject.repository.EquipmentRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class EquipmentService {
     private final EquipmentRepository equipmentRepository;
@@ -29,5 +31,9 @@ public class EquipmentService {
 
         equipmentRepository.save(equipment);
         return true;
+    }
+
+    public List<Equipment> getAllEquipment() {
+        return equipmentRepository.findAll();
     }
 }
