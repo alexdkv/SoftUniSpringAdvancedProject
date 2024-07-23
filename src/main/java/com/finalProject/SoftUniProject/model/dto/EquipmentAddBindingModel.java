@@ -1,15 +1,13 @@
 package com.finalProject.SoftUniProject.model.dto;
 
 import jakarta.validation.constraints.Size;
-import org.hibernate.validator.constraints.URL;
-import org.hibernate.validator.constraints.UniqueElements;
 
 public class EquipmentAddBindingModel {
     @Size(min = 3, message = "Equipment name must be at least 3 letters")
     private String name;
 
-    @URL(message = "Please enter valid URL address!")
-    private String url;
+    @org.hibernate.validator.constraints.URL(message = "Enter a valid photoUrl")
+    private String photoUrl;
 
     private int weight;
 
@@ -21,12 +19,12 @@ public class EquipmentAddBindingModel {
         this.name = name;
     }
 
-    public  String getUrl() {
-        return url;
+    public  String getPhotoUrl() {
+        return photoUrl;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setPhotoUrl(String photoUrl) {
+        this.photoUrl = photoUrl;
     }
 
 

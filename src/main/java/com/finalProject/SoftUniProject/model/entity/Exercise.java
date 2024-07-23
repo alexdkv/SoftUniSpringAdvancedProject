@@ -1,6 +1,7 @@
 package com.finalProject.SoftUniProject.model.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
 
 import java.util.ArrayList;
@@ -20,6 +21,10 @@ public class Exercise extends BaseEntity{
 
     @Column(nullable = false)
     private int intensity;
+
+    @NotNull
+    @org.hibernate.validator.constraints.URL
+    private String photoUrl;
 
     @ManyToOne
     private Equipment equipment;
@@ -62,6 +67,14 @@ public class Exercise extends BaseEntity{
 
     public void setIntensity(int intensity) {
         this.intensity = intensity;
+    }
+
+    public @NotNull String getPhotoUrl() {
+        return photoUrl;
+    }
+
+    public void setPhotoUrl(@NotNull String photoUrl) {
+        this.photoUrl = photoUrl;
     }
 
     public Equipment getEquipment() {

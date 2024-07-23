@@ -27,12 +27,12 @@
 
         <div class="form-group">
             <div class="label-holder text-white textCol d-flex justify-content-center">
-                <label for="url" class="h4 mb-2">Photo URL</label>
+                <label for="photoUrl" class="h4 mb-2">Photo photoUrl</label>
             </div>
-            <input type="text" class="form-control" id="url"
-                   th:field="*{url}"/>
-            <small th:if="${#fields.hasErrors('url')}"
-                   th:errors="*{url}" class="danger">URL error message</small>
+            <input type="text" class="form-control" id="photoUrl"
+                   th:field="*{photoUrl}"/>
+            <small th:if="${#fields.hasErrors('photoUrl')}"
+                   th:errors="*{photoUrl}" class="danger">photoUrl error message</small>
         </div>
 
         <div class="form-group">

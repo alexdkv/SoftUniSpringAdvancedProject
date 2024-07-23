@@ -28,6 +28,9 @@ public class EquipmentController {
     @PostMapping("/equipment-add")
     public ModelAndView ExerciseAdd(@ModelAttribute("equipmentAddBindingModel") @Valid EquipmentAddBindingModel equipmentAddBindingModel,
                                     BindingResult bindingResult){
+        if (bindingResult.hasErrors()){
+            return new ModelAndView("equipment-add");
+        }
 
           boolean hasAddedEquipment =  equipmentService.addEquipment(equipmentAddBindingModel);
           if (!hasAddedEquipment){

@@ -3,6 +3,7 @@ package com.finalProject.SoftUniProject.model.entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.URL;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +17,8 @@ public class Equipment extends BaseEntity{
     private String name;
 
     @NotNull
-    private String URL;
+    @URL
+    private String photoUrl;
 
     @Column
     private int weight;
@@ -36,12 +38,12 @@ public class Equipment extends BaseEntity{
         this.name = name;
     }
 
-    public  String getURL() {
-        return URL;
+    public  String getPhotoUrl() {
+        return photoUrl;
     }
 
-    public void setURL( String URL) {
-        this.URL = URL;
+    public void setPhotoUrl(String photoUrl) {
+        this.photoUrl = photoUrl;
     }
 
     public int getWeight() {

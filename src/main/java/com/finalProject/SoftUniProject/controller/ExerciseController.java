@@ -35,6 +35,9 @@ public class ExerciseController {
     public ModelAndView ExerciseAdd(@ModelAttribute("exerciseAddBindingModel") @Valid ExerciseAddBindingModel exerciseAddBindingModel,
                                     BindingResult bindingResult){
 
+        if (bindingResult.hasErrors()){
+            return new ModelAndView("exercise-add");
+        }
         exerciseService.addExercise(exerciseAddBindingModel);
 
         return new ModelAndView("redirect:/home");

@@ -26,7 +26,7 @@ public class EquipmentService {
         Equipment equipment = new Equipment();
 
         equipment.setName(equipmentAddBindingModel.getName());
-        equipment.setURL(equipmentAddBindingModel.getUrl());
+        equipment.setPhotoUrl(equipmentAddBindingModel.getPhotoUrl());
         equipment.setWeight(equipmentAddBindingModel.getWeight());
 
         equipmentRepository.save(equipment);

@@ -12,6 +12,9 @@ public class ExerciseAddBindingModel {
 
     private int intensity;
 
+    @org.hibernate.validator.constraints.URL(message = "Please enter valid image photoUrl!")
+    private String photoUrl;
+
     private Equipment equipment;
 
     public  String getName() {
@@ -44,5 +47,13 @@ public class ExerciseAddBindingModel {
 
     public void setEquipment(Equipment equipment) {
         this.equipment = equipment;
+    }
+
+    public String getPhotoUrl() {
+        return photoUrl;
+    }
+
+    public void setPhotoUrl(String photoUrl) {
+        this.photoUrl = photoUrl;
     }
 }

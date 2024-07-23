@@ -44,6 +44,16 @@
                    th:errors="*{intensity}" class="danger">intensity error message</small>
         </div>
 
+        <div class="form-group">
+            <div class="label-holder text-white textCol d-flex justify-content-center">
+                <label for="photoUrl" class="h4 mb-2">Photo photoUrl</label>
+            </div>
+            <input type="text" class="form-control" id="photoUrl"
+                   th:field="*{photoUrl}"/>
+
+            <small th:if="${#fields.hasErrors('photoUrl')}"
+                   th:errors="*{photoUrl}" class="danger">photoUrl error message</small>
+        </div>
 
         <div class="form-group">
             <div class="text-white label-holder d-flex justify-content-center">
