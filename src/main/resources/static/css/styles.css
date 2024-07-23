@@ -187,6 +187,31 @@ main .button {
   border-radius: 5px;
 }
 
+
+
+.coach-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.coach {
+    max-width: 1200px;
+    width: 100%;
+}
+
+.coach-sections {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.coach-cards {
+    flex: 1;
+    min-width: 200px;
+    margin: 10px;
+    text-align: center;
+}
 /* FOOTER */
 
 footer {

@@ -24,6 +24,23 @@ public class ExerciseService {
 
     public void addExercise(ExerciseAddBindingModel exerciseAddBindingModel) {
 
+        String username = getUsername();
+        Optional<User> user = userRepository.findByEmail(username);
+        if (user.isEmpty()) {
+            throw new IllegalStateException("User not found.");
+        }
+
+        Exercise exercise = new Exercise();
+        exercise.setName(exerciseAddBindingModel.getName());
+        exercise.setDescription(exerciseAddBindingModel.getDescription());
+        exercise.setIntensity(exerciseAddBindingModel.getIntensity());
+        exercise.setEquipment(exerciseAddBindingModel.getEquipment());
+
+        exercise.setCoach(user.get());
+        exerciseRepository.save(exercise);
+    }
+
+    private static String getUsername() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String username = null;
 
@@ -40,18 +57,6 @@ public class ExerciseService {
             throw new IllegalStateException("User is not logged in.");
 
         }
-        Optional<User> user = userRepository.findByEmail(username);
-        if (user.isEmpty()) {
-            throw new IllegalStateException("User not found.");
-        }
-
-        Exercise exercise = new Exercise();
-        exercise.setName(exerciseAddBindingModel.getName());
-        exercise.setDescription(exerciseAddBindingModel.getDescription());
-        exercise.setIntensity(exerciseAddBindingModel.getIntensity());
-        exercise.setEquipment(exerciseAddBindingModel.getEquipment());
-
-        exercise.setCoach(user.get());
-        exerciseRepository.save(exercise);
+        return username;
     }
 }

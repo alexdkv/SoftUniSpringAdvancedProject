@@ -2,6 +2,7 @@ package com.finalProject.SoftUniProject.model.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.Length;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +11,8 @@ import java.util.List;
 @Table(name = "equipment")
 public class Equipment extends BaseEntity{
 
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
+    @Length(min = 3)
     private String name;
 
     @NotNull

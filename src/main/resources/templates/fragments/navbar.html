@@ -28,6 +28,9 @@
             <li sec:authorize="isAuthenticated() and hasRole('COACH')">
                 <a href="/exercise-add">Add Exercise</a>
             </li>
+            <li sec:authorize="isAuthenticated() and hasRole('COACH')">
+                <a href="/equipment-add">Add Equipment</a>
+            </li>
             <li sec:authorize="!isAuthenticated()">
                 <a href="/login">Login</a>
             </li>
