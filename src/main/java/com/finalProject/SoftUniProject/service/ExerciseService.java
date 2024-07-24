@@ -10,6 +10,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -24,8 +25,8 @@ public class ExerciseService {
 
     public void addExercise(ExerciseAddBindingModel exerciseAddBindingModel) {
 
-        String username = getUsername();
-        Optional<User> user = userRepository.findByEmail(username);
+        String email = getEmail();
+        Optional<User> user = userRepository.findByEmail(email);
         if (user.isEmpty()) {
             throw new IllegalStateException("User not found.");
         }
@@ -41,25 +42,27 @@ public class ExerciseService {
         exerciseRepository.save(exercise);
     }
 
-    private static String getUsername() {
+    private static String getEmail() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String username = null;
+        String email = null;
 
         if (authentication != null) {
             Object principal = authentication.getPrincipal();
             if (principal instanceof UserDetails) {
-                username = ((UserDetails) principal).getUsername();
+                email = ((UserDetails) principal).getUsername();
             } else {
-                username = principal.toString();
+                email = principal.toString();
             }
         }
 
-        if (username == null) {
+        if (email == null) {
             throw new IllegalStateException("User is not logged in.");
 
         }
-        return username;
+        return email;
     }
 
-
+    public List<Exercise> findByCoach(User user) {
+        return exerciseRepository.findByCoach(user);
+    }
 }
