@@ -69,4 +69,12 @@ public class ExerciseService {
     public List<Exercise> findOthers(User coach){
         return exerciseRepository.findByCoachNot(coach);
     }
+
+    public void deleteExercise(Long id){
+        Optional<Exercise> exercise = exerciseRepository.findById(id);
+
+        //is in use TODO
+
+        exerciseRepository.deleteById(id);
+    }
 }

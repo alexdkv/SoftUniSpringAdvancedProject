@@ -17,7 +17,7 @@
                             <th>Name</th>
                             <th>Description</th>
                             <th>Intensity</th>
-
+                            <th>Remove</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -26,7 +26,11 @@
                             <td th:text="${exercise.name}">Exercise Name</td>
                             <td th:text="${exercise.description}">Description</td>
                             <td th:text="${exercise.intensity}">Intensity</td>
-
+                            <td>
+                                <form th:method="delete" th:action="@{/exercise/delete/{id}(id=${exercise.id})}">
+                                    <button type="submit" class="btn btn-danger">Remove</button>
+                                </form>
+                            </td>
                         </tr>
                         </tbody>
                     </table>
