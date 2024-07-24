@@ -26,6 +26,9 @@
                 <a href="/">Exercises</a>
             </li>
             <li sec:authorize="isAuthenticated() and hasRole('COACH')">
+                <a href="/exercises-coach">Exercises</a>
+            </li>
+            <li sec:authorize="isAuthenticated() and hasRole('COACH')">
                 <a href="/exercise-add">Add Exercise</a>
             </li>
             <li sec:authorize="isAuthenticated() and hasRole('COACH')">

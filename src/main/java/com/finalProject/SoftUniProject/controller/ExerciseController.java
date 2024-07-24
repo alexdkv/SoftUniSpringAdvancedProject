@@ -64,7 +64,10 @@ public class ExerciseController {
 
         List<Exercise> myExercises = exerciseService.findByCoach(currentCoach);
 
+        List<Exercise> otherExercises = exerciseService.findOthers(currentCoach);
+
         modelAndView.addObject("myExercises", myExercises);
+        modelAndView.addObject("otherExercises", otherExercises);
 
         return modelAndView;
     }

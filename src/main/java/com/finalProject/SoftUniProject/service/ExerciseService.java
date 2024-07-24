@@ -62,7 +62,11 @@ public class ExerciseService {
         return email;
     }
 
-    public List<Exercise> findByCoach(User user) {
-        return exerciseRepository.findByCoach(user);
+    public List<Exercise> findByCoach(User coach) {
+        return exerciseRepository.findByCoach(coach);
+    }
+
+    public List<Exercise> findOthers(User coach){
+        return exerciseRepository.findByCoachNot(coach);
     }
 }
