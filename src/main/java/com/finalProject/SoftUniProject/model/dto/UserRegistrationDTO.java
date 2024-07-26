@@ -5,15 +5,15 @@ import jakarta.validation.constraints.*;
 
 public class UserRegistrationDTO {
 
-    @NotEmpty
+    @NotBlank(message = "Must not be empty")
     @Size(min = 3, max = 20, message = "Username must be between 3 and 20 characters!")
     private String username;
 
-    @NotEmpty
+    @NotBlank(message = "Must not be empty")
     @Size(min = 3, max = 20, message = "Password must be between 3 and 20 characters!")
     private String password;
 
-    @NotEmpty
+    @NotBlank(message = "Must not be empty")
     @Size(min = 3, max = 20, message = "Password must be between 3 and 20 characters!")
     private String confirmPassword;
 

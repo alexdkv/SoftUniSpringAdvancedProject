@@ -7,7 +7,7 @@ public class ExerciseAddBindingModel {
     @Size(min = 3, max = 20, message = "Exercise name must be between 3 and 20 characters!")
     private String name;
 
-    @Size(min = 3, max = 50, message = "Description must be between 3 and 50 characters!")
+    @Size(min = 3, message = "Description must be more than 3 characters!")
     private String description;
 
     private int intensity;

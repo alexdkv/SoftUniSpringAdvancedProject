@@ -70,6 +70,15 @@ public class ExerciseController {
         return modelAndView;
     }
 
+
+    @GetMapping("/exercise/preview/{id}")
+    public ModelAndView previewExercise(@PathVariable Long id){
+        ModelAndView modelAndView = new ModelAndView("exercise-preview");
+        Exercise exercise = exerciseService.findById(id);
+        modelAndView.addObject("exercise",exercise);
+        return modelAndView;
+    }
+
     @DeleteMapping("/exercise/delete/{id}")
     public ModelAndView deleteExercise(@PathVariable Long id){
 

@@ -11,6 +11,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.Optional;
 
 @Service
@@ -68,6 +69,12 @@ public class ExerciseService {
 
     public List<Exercise> findOthers(User coach){
         return exerciseRepository.findByCoachNot(coach);
+    }
+
+    public Exercise findById(long id){
+
+        return exerciseRepository.findById(id)
+                .orElseThrow(() -> new NoSuchElementException("Exercise with ID " + id + " not found"));
     }
 
     public void deleteExercise(Long id){
