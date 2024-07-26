@@ -30,6 +30,8 @@ public class ExerciseController {
         this.userRepository = userRepository;
     }
 
+    /* COACHES */
+
     @GetMapping("/exercise-add")
     public ModelAndView exerciseAddView(@ModelAttribute("exerciseAddBindingModel") ExerciseAddBindingModel exerciseAddBindingModel){
 
@@ -50,8 +52,6 @@ public class ExerciseController {
         return new ModelAndView("redirect:/home");
     }
 
-
-
     @GetMapping("/exercises-coach")
     public ModelAndView ExercisesCoach(Principal principal){
         ModelAndView modelAndView = new ModelAndView("exercises-coach");
@@ -69,7 +69,6 @@ public class ExerciseController {
 
         return modelAndView;
     }
-
 
     @GetMapping("/exercise/preview/{id}")
     public ModelAndView previewExercise(@PathVariable Long id){

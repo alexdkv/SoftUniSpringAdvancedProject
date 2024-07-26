@@ -23,10 +23,14 @@
 
         </span>
     <div class="main-container">
-        <body>
-        Welcome
-        <th:block sec:authorize="isAuthenticated()" sec:authentication='name'></th:block>
-        <th:block sec:authorize="!isAuthenticated()" >Anonymous</th:block>
+        <body >
+        <h1 class="display-1">Welcome</h1>
+        <th:block sec:authorize="isAuthenticated()" >
+            <span class="display-4"> [[${#authentication.name}]]</span>
+        </th:block>
+        <th:block sec:authorize="!isAuthenticated()" class="display-1">
+            <span class="display-4"> Anonymous </span>
+        </th:block>
         </body>
     </div>
 </main>

@@ -1,7 +1,10 @@
 package com.finalProject.SoftUniProject.model.dto;
 
+import com.finalProject.SoftUniProject.model.enums.SpecialtyName;
 import com.finalProject.SoftUniProject.model.enums.UserRoleENUM;
+import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.*;
+import org.hibernate.validator.constraints.URL;
 
 public class UserRegistrationDTO {
 
@@ -23,6 +26,17 @@ public class UserRegistrationDTO {
 
     @NotNull(message = "Role must be selected!")
     private UserRoleENUM role;
+
+    @URL
+    private String photoUrl;
+
+    private SpecialtyName specialty;
+
+    @Size(min = 5, message = "Bio must be at least 5 characters long!")
+    private String bio;
+
+    @Size(min = 5, message = "Bio must be at least 5 characters long!")
+    private String fullName;
 
     public  String getUsername() {
         return username;
@@ -62,5 +76,37 @@ public class UserRegistrationDTO {
 
     public void setRole( UserRoleENUM role) {
         this.role = role;
+    }
+
+    public @URL String getPhotoUrl() {
+        return photoUrl;
+    }
+
+    public void setPhotoUrl(@URL String photoUrl) {
+        this.photoUrl = photoUrl;
+    }
+
+    public SpecialtyName getSpecialty() {
+        return specialty;
+    }
+
+    public void setSpecialty(SpecialtyName specialty) {
+        this.specialty = specialty;
+    }
+
+    public @Size(min = 5, message = "Bio must be at least 5 characters long!") String getBio() {
+        return bio;
+    }
+
+    public void setBio(@Size(min = 5, message = "Bio must be at least 5 characters long!") String bio) {
+        this.bio = bio;
+    }
+
+    public @Size(min = 5, message = "Bio must be at least 5 characters long!") String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(@Size(min = 5, message = "Bio must be at least 5 characters long!") String fullName) {
+        this.fullName = fullName;
     }
 }

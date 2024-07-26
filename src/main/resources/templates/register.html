@@ -7,10 +7,24 @@
 <header th:replace="fragments/navbar::nav"></header>
 <main>
 
-    <form class="welcome login" th:method="post"
+    <form class="welcome login"
+          th:method="post"
           th:action="@{/register}"
           th:object="${registerDTO}"  >
         <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark">Register</span></h1>
+
+        <div class="form-group">
+            <div class="label-holder text-white textCol d-flex justify-content-center">
+                <label for="role" class="h4 mb-2">Role</label>
+            </div>
+            <select class="form-control" id="role" th:field="*{role}">
+                <option value="" >Select your role</option>
+                <option th:value="COACH">Coach</option>
+                <option th:value="TRAINEE">Trainee</option>
+            </select>
+            <small th:if="${#fields.hasErrors('role')}" th:errors="*{role}" class="danger">Role error message</small>
+        </div>
+
         <div class="form-group">
             <div class="label-holder textCol d-flex justify-content-center">
                 <label th:for="username" class="h4 mb-2 text-white">Username</label>
@@ -54,22 +68,67 @@
                    th:errors="*{confirmPassword}"
                    class="danger">Password error message</small>
         </div>
-        <div class="form-group">
-            <div class="label-holder text-white textCol d-flex justify-content-center">
-                <label for="role" class="h4 mb-2">Role</label>
+
+
+        <div id="coachFields" style="display: none;">
+            <div class="form-group">
+                <div class="label-holder text-white textCol d-flex justify-content-center">
+                    <label th:for="fullName" class="h4 mb-2">Full Name</label>
+                </div>
+                <input type="text" class="form-control" id="fullName" th:field="*{fullName}" />
+                <small th:if="${#fields.hasErrors('fullName')}"
+                       th:errors="*{fullName}"
+                       class="danger">Name error message</small>
             </div>
-            <select class="form-control" id="role" th:field="*{role}">
-                <option value="" >Select your role</option>
-                <option th:value="COACH">Coach</option>
-                <option th:value="TRAINEE">Trainee</option>
-            </select>
-            <small th:if="${#fields.hasErrors('role')}" th:errors="*{role}" class="danger">Role error message</small>
+
+            <div class="form-group">
+                <div class="label-holder text-white textCol d-flex justify-content-center">
+                    <label th:for="photoUrl" class="h4 mb-2">Photo URL</label>
+                </div>
+                <input type="url" class="form-control" id="photoUrl" th:field="*{photoUrl}" />
+                <small th:if="${#fields.hasErrors('photoUrl')}"
+                       th:errors="*{photoUrl}"
+                       class="danger">Url error message</small>
+            </div>
+
+            <div class="form-group">
+                <div class="label-holder text-white textCol d-flex justify-content-center">
+                    <label th:for="specialty" class="h4 mb-2">Specialty</label>
+                </div>
+                <input type="text" class="form-control" id="specialty" th:field="*{specialty}" />
+                <small th:if="${#fields.hasErrors('specialty')}"
+                       th:errors="*{specialty}"
+                       class="danger">Specialty error message</small>
+            </div>
+
+            <div class="form-group">
+                <div class="label-holder text-white textCol d-flex justify-content-center">
+                    <label th:for="bio" class="h4 mb-2">Biography</label>
+                </div>
+                <textarea class="form-control" id="bio" th:field="*{bio}" rows="3"></textarea>
+                <small th:if="${#fields.hasErrors('bio')}"
+                       th:errors="*{bio}"
+                       class="danger">Bio error message</small>
+            </div>
         </div>
+
         <div class="button-holder d-flex justify-content-center">
             <button type="submit" value="Register">Register</button>
         </div>
 
     </form>
+
+    <script>
+        document.getElementById('role').addEventListener('change', function() {
+            var coachFields = document.getElementById('coachFields');
+            if (this.value === 'COACH') {
+                coachFields.style.display = 'block';
+            } else {
+                coachFields.style.display = 'none';
+            }
+        });
+    </script>
+
 </main>
 <footer th:replace="fragments/navbar::footer"></footer>
 </body>

@@ -1,8 +1,11 @@
 package com.finalProject.SoftUniProject.model.entity;
 
+import com.finalProject.SoftUniProject.model.enums.SpecialtyName;
+import com.finalProject.SoftUniProject.model.enums.UserRoleENUM;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import org.hibernate.validator.constraints.Length;
+import org.hibernate.validator.constraints.URL;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,8 +41,17 @@ public class User extends BaseEntity{
     @OneToMany(mappedBy = "coach")
     private List<Exercise> addedExercises;
 
+    @URL
+    private String photoUrl;
 
+    @Length(min = 5)
+    private String bio;
 
+    @Length(min = 5)
+    private String fullName;
+
+    @Enumerated(EnumType.STRING)
+    private SpecialtyName specialty;
 
 
     public User() {
@@ -101,5 +113,45 @@ public class User extends BaseEntity{
 
     public void setExercises(List<Exercise> exercises) {
         this.exercises = exercises;
+    }
+
+    public List<Exercise> getAddedExercises() {
+        return addedExercises;
+    }
+
+    public void setAddedExercises(List<Exercise> addedExercises) {
+        this.addedExercises = addedExercises;
+    }
+
+    public @URL String getPhotoUrl() {
+        return photoUrl;
+    }
+
+    public void setPhotoUrl(@URL String photoUrl) {
+        this.photoUrl = photoUrl;
+    }
+
+    public @Length(min = 5) String getBio() {
+        return bio;
+    }
+
+    public void setBio(@Length(min = 5) String bio) {
+        this.bio = bio;
+    }
+
+    public @Length(min = 5) String getFullName() {
+        return fullName;
+    }
+
+    public void setFullName(@Length(min = 5) String fullName) {
+        this.fullName = fullName;
+    }
+
+    public SpecialtyName getSpecialty() {
+        return specialty;
+    }
+
+    public void setSpecialty(SpecialtyName specialty) {
+        this.specialty = specialty;
     }
 }
