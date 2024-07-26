@@ -2,6 +2,7 @@ package com.finalProject.SoftUniProject.model.dto;
 
 import com.finalProject.SoftUniProject.model.enums.SpecialtyName;
 import com.finalProject.SoftUniProject.model.enums.UserRoleENUM;
+import jakarta.annotation.Nullable;
 import jakarta.persistence.Enumerated;
 import jakarta.validation.constraints.*;
 import org.hibernate.validator.constraints.URL;
@@ -32,10 +33,8 @@ public class UserRegistrationDTO {
 
     private SpecialtyName specialty;
 
-    @Size(min = 5, message = "Bio must be at least 5 characters long!")
     private String bio;
 
-    @Size(min = 5, message = "Bio must be at least 5 characters long!")
     private String fullName;
 
     public  String getUsername() {
@@ -94,19 +93,19 @@ public class UserRegistrationDTO {
         this.specialty = specialty;
     }
 
-    public @Size(min = 5, message = "Bio must be at least 5 characters long!") String getBio() {
+    public  String getBio() {
         return bio;
     }
 
-    public void setBio(@Size(min = 5, message = "Bio must be at least 5 characters long!") String bio) {
+    public void setBio( String bio) {
         this.bio = bio;
     }
 
-    public @Size(min = 5, message = "Bio must be at least 5 characters long!") String getFullName() {
+    public String getFullName() {
         return fullName;
     }
 
-    public void setFullName(@Size(min = 5, message = "Bio must be at least 5 characters long!") String fullName) {
+    public void setFullName( String fullName) {
         this.fullName = fullName;
     }
 }

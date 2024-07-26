@@ -95,7 +95,11 @@
                 <div class="label-holder text-white textCol d-flex justify-content-center">
                     <label th:for="specialty" class="h4 mb-2">Specialty</label>
                 </div>
-                <input type="text" class="form-control" id="specialty" th:field="*{specialty}" />
+                <select class="form-control" id="specialty" th:field="*{specialty}">
+                    <option value="">Select your specialty</option>
+                    <option th:each="specialty : ${T(com.finalProject.SoftUniProject.model.enums.SpecialtyName).values()}"
+                            th:value="${specialty}" th:text="${specialty}">Specialty</option>
+                </select>
                 <small th:if="${#fields.hasErrors('specialty')}"
                        th:errors="*{specialty}"
                        class="danger">Specialty error message</small>

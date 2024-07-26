@@ -44,10 +44,8 @@ public class User extends BaseEntity{
     @URL
     private String photoUrl;
 
-    @Length(min = 5)
     private String bio;
 
-    @Length(min = 5)
     private String fullName;
 
     @Enumerated(EnumType.STRING)
@@ -131,19 +129,19 @@ public class User extends BaseEntity{
         this.photoUrl = photoUrl;
     }
 
-    public @Length(min = 5) String getBio() {
+    public  String getBio() {
         return bio;
     }
 
-    public void setBio(@Length(min = 5) String bio) {
+    public void setBio( String bio) {
         this.bio = bio;
     }
 
-    public @Length(min = 5) String getFullName() {
+    public  String getFullName() {
         return fullName;
     }
 
-    public void setFullName(@Length(min = 5) String fullName) {
+    public void setFullName(String fullName) {
         this.fullName = fullName;
     }
 

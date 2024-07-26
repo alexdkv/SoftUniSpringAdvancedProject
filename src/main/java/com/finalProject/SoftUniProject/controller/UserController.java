@@ -1,6 +1,7 @@
 package com.finalProject.SoftUniProject.controller;
 
 import com.finalProject.SoftUniProject.model.dto.UserRegistrationDTO;
+import com.finalProject.SoftUniProject.model.entity.User;
 import com.finalProject.SoftUniProject.service.UserService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
@@ -9,6 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 @Controller
 public class UserController {
@@ -61,5 +64,11 @@ public class UserController {
 
 
 
-
+    @GetMapping("/trainee-coaches")
+    public ModelAndView traineeCoachesView(){
+        ModelAndView modelAndView = new ModelAndView("trainee-coaches");
+        List<User> coaches = userService.findAllCoaches();
+        modelAndView.addObject("coaches", coaches);
+        return modelAndView;
+    }
 }

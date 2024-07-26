@@ -3,11 +3,14 @@ package com.finalProject.SoftUniProject.service;
 import com.finalProject.SoftUniProject.model.dto.UserRegistrationDTO;
 import com.finalProject.SoftUniProject.model.entity.Role;
 import com.finalProject.SoftUniProject.model.entity.User;
+import com.finalProject.SoftUniProject.model.enums.UserRoleENUM;
 import com.finalProject.SoftUniProject.repository.RoleRepository;
 import com.finalProject.SoftUniProject.repository.UserRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class UserService {
@@ -37,5 +40,10 @@ public class UserService {
         mappedEntity.setRole(role);
 
         return mappedEntity;
+    }
+
+    public List<User> findAllCoaches(){
+        Role role = roleRepository.findByName(UserRoleENUM.COACH).get();
+        return userRepository.findAllByRole(role);
     }
 }
