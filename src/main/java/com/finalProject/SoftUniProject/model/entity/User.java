@@ -38,7 +38,7 @@ public class User extends BaseEntity{
     @ManyToMany(mappedBy = "users")
     private List<Exercise> exercises;
 
-    @OneToMany(mappedBy = "coach")
+    @OneToMany(mappedBy = "coach", fetch = FetchType.EAGER)
     private List<Exercise> addedExercises;
 
     @URL

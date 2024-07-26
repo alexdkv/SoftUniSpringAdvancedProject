@@ -11,6 +11,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 public class UserService {
@@ -45,5 +46,10 @@ public class UserService {
     public List<User> findAllCoaches(){
         Role role = roleRepository.findByName(UserRoleENUM.COACH).get();
         return userRepository.findAllByRole(role);
+    }
+
+    public User findById(long id){
+        return userRepository.findById(id)
+                .orElseThrow(() -> new NoSuchElementException("Exercise with ID " + id + " not found"));
     }
 }

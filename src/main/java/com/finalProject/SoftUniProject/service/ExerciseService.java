@@ -72,7 +72,6 @@ public class ExerciseService {
     }
 
     public Exercise findById(long id){
-
         return exerciseRepository.findById(id)
                 .orElseThrow(() -> new NoSuchElementException("Exercise with ID " + id + " not found"));
     }

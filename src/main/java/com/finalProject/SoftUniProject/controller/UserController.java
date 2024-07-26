@@ -8,6 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -63,12 +64,19 @@ public class UserController {
 
 
 
-
     @GetMapping("/trainee-coaches")
     public ModelAndView traineeCoachesView(){
         ModelAndView modelAndView = new ModelAndView("trainee-coaches");
         List<User> coaches = userService.findAllCoaches();
         modelAndView.addObject("coaches", coaches);
+        return modelAndView;
+    }
+
+    @GetMapping("/coach/preview/{id}")
+    public ModelAndView coachPreview(@PathVariable Long id){
+        ModelAndView modelAndView = new ModelAndView("coach-preview");
+        User coach = userService.findById(id);
+        modelAndView.addObject("coach", coach);
         return modelAndView;
     }
 }
