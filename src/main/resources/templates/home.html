@@ -24,7 +24,7 @@
         </span>
     <div class="main-container">
         <body >
-        <h1 class="display-1">Welcome</h1>
+        <h1 class="display-1" th:text="#{welcome_message}">Welcome</h1>
         <th:block sec:authorize="isAuthenticated()" >
             <span class="display-4"> [[${#authentication.name}]]</span>
         </th:block>
@@ -36,7 +36,7 @@
 </main>
 
 <div class="welcome">
-    <h3>Welcome</h3>
+    <h3 th:text="#{welcome_message}">Welcome</h3>
     <div class="divider"></div>
     <div class="welcome-sections">
         <section class="tools">
