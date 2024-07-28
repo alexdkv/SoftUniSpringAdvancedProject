@@ -32,7 +32,9 @@
                                 <h4 th:text="${exercise.name}">Exercise Name</h4>
                                 <p th:text="${exercise.description}">Description of the exercise.</p>
                                 <p><strong>Intensity:</strong> <span th:text="${exercise.intensity}">Intensity</span></p>
-
+                                <form th:method="get" th:action="@{/exercise/preview/{id}(id=${exercise.id})}">
+                                    <button type="submit" class="btn btn-danger">Preview</button>
+                                </form>
                             </li>
                         </ul>
                     </div>
