@@ -7,11 +7,15 @@ import com.finalProject.SoftUniProject.model.enums.UserRoleENUM;
 import com.finalProject.SoftUniProject.repository.RoleRepository;
 import com.finalProject.SoftUniProject.repository.UserRepository;
 import org.modelmapper.ModelMapper;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -51,5 +55,43 @@ public class UserService {
     public User findById(long id){
         return userRepository.findById(id)
                 .orElseThrow(() -> new NoSuchElementException("Exercise with ID " + id + " not found"));
+    }
+
+
+
+
+
+    public void assignCoach(User coach){
+        String email = getEmail();
+        Optional<User> user = userRepository.findByEmail(email);
+        if (user.isEmpty()) {
+            throw new IllegalStateException("User not found.");
+        }
+
+        if (user.get().getCoach() != null){
+            throw new IllegalStateException("User already has a coach!");
+        }
+        user.get().setCoach(coach);
+        userRepository.save(user.get());
+    }
+
+
+    protected static String getEmail() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String email = null;
+
+        if (authentication != null) {
+            Object principal = authentication.getPrincipal();
+            if (principal instanceof UserDetails) {
+                email = ((UserDetails) principal).getUsername();
+            } else {
+                email = principal.toString();
+            }
+        }
+        if (email == null) {
+            throw new IllegalStateException("User is not logged in.");
+
+        }
+        return email;
     }
 }

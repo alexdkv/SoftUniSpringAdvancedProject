@@ -19,14 +19,16 @@ public class ExerciseService {
     private final UserRepository userRepository;
     private final ExerciseRepository exerciseRepository;
 
+
     public ExerciseService(UserRepository userRepository, ExerciseRepository exerciseRepository) {
         this.userRepository = userRepository;
         this.exerciseRepository = exerciseRepository;
+
     }
 
     public void addExercise(ExerciseAddBindingModel exerciseAddBindingModel) {
 
-        String email = getEmail();
+        String email = UserService.getEmail();
         Optional<User> user = userRepository.findByEmail(email);
         if (user.isEmpty()) {
             throw new IllegalStateException("User not found.");
@@ -43,25 +45,6 @@ public class ExerciseService {
         exerciseRepository.save(exercise);
     }
 
-    private static String getEmail() {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String email = null;
-
-        if (authentication != null) {
-            Object principal = authentication.getPrincipal();
-            if (principal instanceof UserDetails) {
-                email = ((UserDetails) principal).getUsername();
-            } else {
-                email = principal.toString();
-            }
-        }
-
-        if (email == null) {
-            throw new IllegalStateException("User is not logged in.");
-
-        }
-        return email;
-    }
 
     public List<Exercise> findByCoach(User coach) {
         return exerciseRepository.findByCoach(coach);

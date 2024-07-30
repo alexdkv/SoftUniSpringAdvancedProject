@@ -79,4 +79,12 @@ public class UserController {
         modelAndView.addObject("coach", coach);
         return modelAndView;
     }
+
+    @PostMapping("/coach/assign/{id}")
+    public ModelAndView assignCoach(@PathVariable Long id){
+
+        User coach = userService.findById(id);
+        userService.assignCoach(coach);
+        return new ModelAndView("redirect:/home");
+    }
 }

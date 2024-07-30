@@ -20,9 +20,13 @@
                                 <h1 class="card-title" th:text="${coach.fullName}">Coach Name</h1>
                                 <p class="card-text" th:text="${coach.bio}">Bio of the exercise.</p>
                                 <p class="card-text"><strong>Specialty:</strong> <span th:text="${coach.specialty}">Specialty</span></p>
+                                <form th:method="post" th:action="@{/coach/assign/{id}(id=${coach.id})}">
+                                    <button type="submit" class="btn btn-danger">Assign Coach</button>
+                                </form>
                             </div>
                         </div>
                     </div>
+
                     <div class="card">
                         <div class="card-header">
                             <h3>Exercises by this Coach</h3>
