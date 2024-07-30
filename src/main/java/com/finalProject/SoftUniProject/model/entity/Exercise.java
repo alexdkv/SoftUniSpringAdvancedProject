@@ -32,7 +32,7 @@ public class Exercise extends BaseEntity{
     @ManyToOne
     private User coach;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "user_exercises",
             joinColumns = @JoinColumn(name = "exercise_id"),

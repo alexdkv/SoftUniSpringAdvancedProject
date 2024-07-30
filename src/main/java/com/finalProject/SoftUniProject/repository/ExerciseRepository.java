@@ -10,7 +10,6 @@ import java.util.List;
 @Repository
 public interface ExerciseRepository extends JpaRepository<Exercise, Long> {
     List<Exercise> findByCoach(User coach);
-
-
     List<Exercise> findByCoachNot(User coach);
+
 }

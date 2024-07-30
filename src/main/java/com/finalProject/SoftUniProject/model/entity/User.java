@@ -32,10 +32,10 @@ public class User extends BaseEntity{
     @ManyToOne
     private User coach;
 
-    @OneToMany(mappedBy = "coach")
+    @OneToMany(mappedBy = "coach", fetch = FetchType.EAGER)
     private List<User> trainees;
 
-    @ManyToMany(mappedBy = "users")
+    @ManyToMany(mappedBy = "users", fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     private List<Exercise> exercises;
 
     @OneToMany(mappedBy = "coach", fetch = FetchType.EAGER)
@@ -55,6 +55,7 @@ public class User extends BaseEntity{
     public User() {
         this.trainees = new ArrayList<>();
         this.exercises = new ArrayList<>();
+        this.addedExercises = new ArrayList<>();
     }
 
     public String getUsername() {

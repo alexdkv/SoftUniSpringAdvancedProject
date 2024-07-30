@@ -23,7 +23,7 @@
                 <a href="/trainee-coaches" th:text="#{nav_bar_coach}">Coach</a>
             </li>
             <li sec:authorize="isAuthenticated() and hasRole('TRAINEE')">
-                <a href="/" th:text="#{nav_bar_exercises}">Exercises</a>
+                <a href="/exercises-trainee" th:text="#{nav_bar_exercises}">Exercises</a>
             </li>
             <li sec:authorize="isAuthenticated() and hasRole('COACH')">
                 <a href="/exercises-coach" th:text="#{nav_bar_exercises}">Exercises</a>

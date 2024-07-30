@@ -1,6 +1,7 @@
 package com.finalProject.SoftUniProject.service;
 
 import com.finalProject.SoftUniProject.model.dto.UserRegistrationDTO;
+import com.finalProject.SoftUniProject.model.entity.Exercise;
 import com.finalProject.SoftUniProject.model.entity.Role;
 import com.finalProject.SoftUniProject.model.entity.User;
 import com.finalProject.SoftUniProject.model.enums.UserRoleENUM;
@@ -12,6 +13,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -61,9 +63,11 @@ public class UserService {
 
 
 
+    @Transactional
     public void assignCoach(User coach){
         String email = getEmail();
         Optional<User> user = userRepository.findByEmail(email);
+
         if (user.isEmpty()) {
             throw new IllegalStateException("User not found.");
         }
@@ -72,6 +76,20 @@ public class UserService {
             throw new IllegalStateException("User already has a coach!");
         }
         user.get().setCoach(coach);
+
+        List<Exercise> coachExercises = coach.getAddedExercises();
+        List<Exercise> userExercises = user.get().getExercises();
+
+        for (Exercise exercise : userExercises) {
+            exercise.getUsers().remove(user.get());
+        }
+        userExercises.clear();
+
+        for (Exercise exercise : coachExercises) {
+            userExercises.add(exercise);
+            exercise.getUsers().add(user.get());
+        }
+
         userRepository.save(user.get());
     }
 
