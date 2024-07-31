@@ -1,4 +1,4 @@
-package com.finalProject.SoftUniProject.controller;
+package com.finalProject.SoftUniProject.web;
 
 import com.finalProject.SoftUniProject.model.dto.ExerciseAddBindingModel;
 import com.finalProject.SoftUniProject.model.entity.Exercise;

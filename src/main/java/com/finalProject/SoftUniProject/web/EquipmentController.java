@@ -1,7 +1,6 @@
-package com.finalProject.SoftUniProject.controller;
+package com.finalProject.SoftUniProject.web;
 
 import com.finalProject.SoftUniProject.model.dto.EquipmentAddBindingModel;
-import com.finalProject.SoftUniProject.model.dto.ExerciseAddBindingModel;
 import com.finalProject.SoftUniProject.service.EquipmentService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
