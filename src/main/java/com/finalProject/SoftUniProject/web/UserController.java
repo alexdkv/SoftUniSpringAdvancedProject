@@ -62,8 +62,6 @@ public class UserController {
     }
 
 
-
-
     @GetMapping("/trainee-coaches")
     public ModelAndView traineeCoachesView(){
         ModelAndView modelAndView = new ModelAndView("trainee-coaches");
@@ -85,6 +83,7 @@ public class UserController {
 
         User coach = userService.findById(id);
         userService.assignCoach(coach);
+        //TODO custom error page
         return new ModelAndView("redirect:/home");
     }
 }

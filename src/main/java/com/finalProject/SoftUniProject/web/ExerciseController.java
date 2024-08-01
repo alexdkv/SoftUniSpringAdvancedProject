@@ -6,6 +6,7 @@ import com.finalProject.SoftUniProject.model.entity.User;
 import com.finalProject.SoftUniProject.repository.UserRepository;
 import com.finalProject.SoftUniProject.service.EquipmentService;
 import com.finalProject.SoftUniProject.service.ExerciseService;
+import com.finalProject.SoftUniProject.service.exception.IllegalStateException;
 import jakarta.validation.Valid;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Controller;
@@ -95,7 +96,10 @@ public class ExerciseController {
 
     @DeleteMapping("/exercise/delete/{id}")
     public ModelAndView deleteExercise(@PathVariable Long id){
-
+        List<User> traineesHavingExercise = userRepository.findAllByExercisesId(id);
+        if (!traineesHavingExercise.isEmpty()){
+            throw new IllegalStateException("Exercise is in use! Cannot remove it right now!",id);//TODO custom error page
+        }
         exerciseService.deleteExercise(id);
         return new ModelAndView("redirect:/exercises-coach");
     }

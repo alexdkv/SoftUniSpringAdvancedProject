@@ -37,9 +37,9 @@
             </div>
             <input type="range" class="form-control-range"
                    id="intensity"
-                   min="1" max="10" value="0" oninput="this.nextElementSibling.value = this.value"
+                   min="1" max="10" value="1" oninput="this.nextElementSibling.value = this.value"
                    th:field="*{intensity}">
-            <output class="ml-2">0</output>
+            <output class="ml-2">1</output>
             <small th:if="${#fields.hasErrors('intensity')}"
                    th:errors="*{intensity}" class="danger">intensity error message</small>
         </div>
