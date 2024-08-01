@@ -18,11 +18,11 @@
                         <p class="card-text" th:text="${supplement.description}">Description</p>
                         <p class="card-subtitle mb-2 text-muted" th:text="${supplement.caloriesPerServing}">Calories Per Serving</p>
 
-                        <!--
-                        <form th:method="get" th:action="@{/coach/preview/{id}(id=${coach.id})}">
-                            <button type="submit" class="btn btn-danger">Preview</button>
+
+                        <form th:method="get" th:action="@{/supplement/details/{id}(id=${supplement.id})}">
+                            <button type="submit" class="btn btn-danger">Details</button>
                         </form>
-                        -->
+
                     </div>
                 </div>
             </div>

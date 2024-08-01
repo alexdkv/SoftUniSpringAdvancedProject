@@ -25,7 +25,8 @@ public class SupplementService {
     }
 
     public void createSupplement(SupplementAddDTO supplementAddDTO){
-        supplementRestClient.post()
+        supplementRestClient
+                .post()
                 .uri("http://localhost:8081/supplement")
                 .body(supplementAddDTO)
                 .retrieve();
@@ -46,5 +47,14 @@ public class SupplementService {
         return new PageImpl<>(supplements.getContent(),pageable, supplements.getPage().totalElements());
 
 
+    }
+
+    public SupplementDTO getSupplementById(Long id) {
+        return supplementRestClient
+                .get()
+                .uri("http://localhost:8081/supplement/{id}", id)
+                .accept(MediaType.APPLICATION_JSON)
+                .retrieve()
+                .body(SupplementDTO.class);
     }
 }
