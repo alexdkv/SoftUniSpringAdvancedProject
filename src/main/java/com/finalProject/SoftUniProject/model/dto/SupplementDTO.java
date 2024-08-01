@@ -1,32 +1,11 @@
-package com.finalProject.SoftUniProject.model.entity;
+package com.finalProject.SoftUniProject.model.dto;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
-
-@Entity
-@Table(name = "supplements")
-public class Supplement extends BaseEntity{
-    @Column(nullable = false)
+public class SupplementDTO{
+    private Long id;
     private String name;
-
-    @Column(nullable = false)
     private String description;
-
     private Double caloriesPerServing;
-
     private String photoUrl;
-
-    public Supplement() {
-    }
-
-    public String getPhotoUrl() {
-        return photoUrl;
-    }
-
-    public void setPhotoUrl(String photoUrl) {
-        this.photoUrl = photoUrl;
-    }
 
     public Double getCaloriesPerServing() {
         return caloriesPerServing;
@@ -44,11 +23,27 @@ public class Supplement extends BaseEntity{
         this.description = description;
     }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getPhotoUrl() {
+        return photoUrl;
+    }
+
+    public void setPhotoUrl(String photoUrl) {
+        this.photoUrl = photoUrl;
     }
 }

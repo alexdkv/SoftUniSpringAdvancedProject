@@ -35,7 +35,7 @@
                 <a href="/equipment-add" th:text="#{nav_bar_equipment_add}">Add Equipment</a>
             </li>
             <li sec:authorize="isAuthenticated() ">
-                <a href="/supplement-add" >Add Supplement</a>
+                <a href="/supplement-add" th:text="#{nav_bar_supplement_add}">Add Supplement</a>
             </li>
             <li sec:authorize="!isAuthenticated()">
                 <a href="/login" th:text="#{nav_bar_login}">Login</a>

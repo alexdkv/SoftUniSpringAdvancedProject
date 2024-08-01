@@ -2,6 +2,8 @@ package com.finalProject.SoftUniProject.web;
 
 import com.finalProject.SoftUniProject.model.dto.SupplementAddDTO;
 import com.finalProject.SoftUniProject.service.SupplementService;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -25,5 +27,15 @@ public class SupplementController {
     public ModelAndView supplementAdd(@ModelAttribute("supplementAddDTO") SupplementAddDTO supplementAddDTO){
         supplementService.createSupplement(supplementAddDTO);
         return new ModelAndView("redirect:/home");
+    }
+
+    @GetMapping("/supplements")
+    public ModelAndView supplementsPreview(@PageableDefault(
+            size = 3,
+            sort = "id"
+    )Pageable pageable){
+        ModelAndView modelAndView = new ModelAndView("supplements-all-preview");
+        modelAndView.addObject("supplements", supplementService.getAllSupplements(pageable));
+        return modelAndView;
     }
 }
