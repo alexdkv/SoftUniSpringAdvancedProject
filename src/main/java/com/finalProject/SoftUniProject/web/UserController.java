@@ -34,18 +34,19 @@ public class UserController {
     }
 
     @PostMapping("/register")
-    public String register(@ModelAttribute("registerDTO") @Valid UserRegistrationDTO registerDTO,
+    public ModelAndView register(@ModelAttribute("registerDTO") @Valid UserRegistrationDTO registerDTO,
                            BindingResult bindingResult){
 
         if (bindingResult.hasErrors()){
-            return "register";
+            return new ModelAndView("register");
         }
-        if (!registerDTO.getPassword().equals(registerDTO.getConfirmPassword()) ){
-            return "register";
+        boolean hasSuccessfulRegistration = userService.registerUser(registerDTO);
+        if (!hasSuccessfulRegistration){
+            ModelAndView modelAndView = new ModelAndView("register");
+            modelAndView.addObject("hasRegistrationError", true);
+            return modelAndView;
         }
-
-        userService.registerUser(registerDTO);
-        return "redirect:/login";
+        return new ModelAndView("redirect:/login") ;
     }
 
 

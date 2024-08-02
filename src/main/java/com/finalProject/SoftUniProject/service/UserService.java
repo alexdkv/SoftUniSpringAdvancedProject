@@ -35,8 +35,19 @@ public class UserService {
         this.modelMapper = modelMapper;
     }
 
-    public void registerUser(UserRegistrationDTO userRegistrationDTO){
+    public boolean registerUser(UserRegistrationDTO userRegistrationDTO){
+        if (!userRegistrationDTO.getPassword().equals(userRegistrationDTO.getConfirmPassword())){
+            return false;
+        }
+        boolean existsByUsernameOrEmail = userRepository.existsByUsernameOrEmail(
+                userRegistrationDTO.getUsername(),
+                userRegistrationDTO.getEmail()
+        );
+        if (existsByUsernameOrEmail){
+            return false;
+        }
         userRepository.save(map(userRegistrationDTO));
+        return true;
     }
 
     private User map(UserRegistrationDTO userRegistrationDTO){
@@ -60,10 +71,6 @@ public class UserService {
         return userRepository.findById(id)
                 .orElseThrow(() -> new NoSuchElementException("Exercise with ID " + id + " not found"));
     }
-
-
-
-
 
     @Transactional
     public void assignCoach(User coach){
