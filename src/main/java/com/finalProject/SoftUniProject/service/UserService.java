@@ -7,10 +7,12 @@ import com.finalProject.SoftUniProject.model.entity.User;
 import com.finalProject.SoftUniProject.model.enums.UserRoleENUM;
 import com.finalProject.SoftUniProject.repository.RoleRepository;
 import com.finalProject.SoftUniProject.repository.UserRepository;
+import com.finalProject.SoftUniProject.service.exception.IllegalStateException;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -69,11 +71,11 @@ public class UserService {
         Optional<User> user = userRepository.findByEmail(email);
 
         if (user.isEmpty()) {
-            throw new IllegalStateException("User not found.");
+            throw new UsernameNotFoundException("User not found.");
         }
 
         if (user.get().getCoach() != null){
-            throw new IllegalStateException("User already has a coach!");
+            throw new IllegalStateException("User already has a coach!", user.get().getId());
         }
         user.get().setCoach(coach);
 
@@ -107,7 +109,7 @@ public class UserService {
             }
         }
         if (email == null) {
-            throw new IllegalStateException("User is not logged in.");
+            throw new UsernameNotFoundException("User is not logged in.");
 
         }
         return email;

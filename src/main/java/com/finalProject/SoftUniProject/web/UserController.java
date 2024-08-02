@@ -80,10 +80,8 @@ public class UserController {
 
     @PostMapping("/coach/assign/{id}")
     public ModelAndView assignCoach(@PathVariable Long id){
-
         User coach = userService.findById(id);
         userService.assignCoach(coach);
-        //TODO custom error page
         return new ModelAndView("redirect:/home");
     }
 }

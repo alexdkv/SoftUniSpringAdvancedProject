@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    <title>Paintings Collectors App</title>
+    <title>Fitness Application</title>
     <link rel="stylesheet" href="/css/reset-css.css"/>
     <link rel="stylesheet" href="/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="/css/styles.css"/>
@@ -36,6 +36,9 @@
             </li>
             <li sec:authorize="isAuthenticated() ">
                 <a href="/supplement-add" th:text="#{nav_bar_supplement_add}">Add Supplement</a>
+            </li>
+            <li sec:authorize="isAuthenticated() ">
+                <a href="/supplements" th:text="#{nav_bar_supplements}">Supplements</a>
             </li>
             <li sec:authorize="!isAuthenticated()">
                 <a href="/login" th:text="#{nav_bar_login}">Login</a>

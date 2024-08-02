@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/navbar::head"></head>
+<head th:replace="fragments/navbar::head">
+
+</head>
 <body>
 <header th:replace="fragments/navbar::nav"></header>
 <main>
     <div class="container mt-1 mb-4">
         <div class="row">
 
-            <div class="col-6">
+            <div class="col-12">
                 <div class="home-fields" style="height: 40vh; overflow: auto">
                     <h3 class="text-white">My Exercises</h3>
                     <table class="table table-striped table-dark">
@@ -15,16 +17,15 @@
                         <tr>
                             <th>Image</th>
                             <th>Name</th>
-                            <th>Description</th>
                             <th>Intensity</th>
                             <th>Preview</th>
+                            <th>Number of Sets</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr th:each="exercise : ${myExercises}">
                             <td><img th:src="${exercise.photoUrl}" th:alt="${exercise.name}" width="35" height="35"></td>
                             <td th:text="${exercise.name}">Exercise Name</td>
-                            <td th:text="${exercise.description}">Description</td>
                             <td th:text="${exercise.intensity}">Intensity</td>
 
                             <td>
@@ -32,16 +33,54 @@
                                     <button type="submit" class="btn btn-danger">Preview</button>
                                 </form>
                             </td>
+
+                            <td>
+                                <div class="input-group">
+                                    <button type="button" class="btn btn-secondary" onclick="changeRating(this, -1)">-</button>
+                                    <input type="number" value="1" min="1" max="5" readonly class="form-control text-center" style="width: 30px;" onchange="updateTotalIntensity()">
+                                    <button type="button" class="btn btn-secondary" onclick="changeRating(this, 1)">+</button>
+                                </div>
+                                <input type="hidden" th:value="${exercise.intensity}" class="exercise-intensity">
+                            </td>
                         </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
 
-
+            <div class="col-12">
+                <h4 class="text-white heading-center">Total Intensity: <span id="total-intensity">0</span></h4>
+            </div>
         </div>
     </div>
 </main>
 <footer th:replace="fragments/navbar::footer"></footer>
+
+<script>
+    function changeRating(button, change) {
+        var input = button.parentElement.querySelector('input[type="number"]');
+        var currentValue = parseInt(input.value);
+        var newValue = currentValue + change;
+        if (newValue >= 1 && newValue <= 5) {
+            input.value = newValue;
+            updateTotalIntensity();
+        }
+    }
+
+    function updateTotalIntensity() {
+        var rows = document.querySelectorAll('tbody tr');
+        var totalIntensity = 0;
+
+        rows.forEach(function(row) {
+            var rating = parseInt(row.querySelector('input[type="number"]').value);
+            var intensity = parseInt(row.querySelector('.exercise-intensity').value);
+            totalIntensity += rating * intensity;
+        });
+
+        document.getElementById('total-intensity').textContent = totalIntensity;
+    }
+
+    document.addEventListener('DOMContentLoaded', updateTotalIntensity);
+</script>
 </body>
 </html>

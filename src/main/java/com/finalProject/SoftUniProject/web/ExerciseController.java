@@ -96,10 +96,7 @@ public class ExerciseController {
 
     @DeleteMapping("/exercise/delete/{id}")
     public ModelAndView deleteExercise(@PathVariable Long id){
-        List<User> traineesHavingExercise = userRepository.findAllByExercisesId(id);
-        if (!traineesHavingExercise.isEmpty()){
-            throw new IllegalStateException("Exercise is in use! Cannot remove it right now!",id);//TODO custom error page
-        }
+
         exerciseService.deleteExercise(id);
         return new ModelAndView("redirect:/exercises-coach");
     }

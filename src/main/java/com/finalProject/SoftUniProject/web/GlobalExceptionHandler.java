@@ -1,6 +1,7 @@
 package com.finalProject.SoftUniProject.web;
 
 import com.finalProject.SoftUniProject.service.exception.IllegalStateException;
+import com.finalProject.SoftUniProject.service.exception.ResourceInUseException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -10,10 +11,18 @@ import org.springframework.web.servlet.ModelAndView;
 @ControllerAdvice
 public class GlobalExceptionHandler {
 
-    @ResponseStatus(code = HttpStatus.NOT_FOUND)
+    @ResponseStatus(code = HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(ResourceInUseException.class)
+    public ModelAndView handleIllegalStateExceptionExercise(ResourceInUseException resourceInUseException){
+        ModelAndView modelAndView = new ModelAndView("illegal-state-exercise-in-use");
+        modelAndView.addObject("objectId", resourceInUseException.getId());
+        return modelAndView;
+    }
+
+    @ResponseStatus(code = HttpStatus.BAD_REQUEST)
     @ExceptionHandler(IllegalStateException.class)
-    public ModelAndView handleIllegalStateException(IllegalStateException illegalStateException){
-        ModelAndView modelAndView = new ModelAndView("illegal-state");
+    public ModelAndView handleIllegalStateExceptionCoach(IllegalStateException illegalStateException){
+        ModelAndView modelAndView = new ModelAndView("illegal-state-coach-assigned");
         modelAndView.addObject("objectId", illegalStateException.getId());
         return modelAndView;
     }

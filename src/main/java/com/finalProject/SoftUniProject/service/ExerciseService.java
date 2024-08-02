@@ -5,9 +5,12 @@ import com.finalProject.SoftUniProject.model.entity.Exercise;
 import com.finalProject.SoftUniProject.model.entity.User;
 import com.finalProject.SoftUniProject.repository.ExerciseRepository;
 import com.finalProject.SoftUniProject.repository.UserRepository;
+import com.finalProject.SoftUniProject.service.exception.IllegalStateException;
+import com.finalProject.SoftUniProject.service.exception.ResourceInUseException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -31,7 +34,7 @@ public class ExerciseService {
         String email = UserService.getEmail();
         Optional<User> user = userRepository.findByEmail(email);
         if (user.isEmpty()) {
-            throw new IllegalStateException("User not found.");
+            throw new UsernameNotFoundException("User not found.");
         }
 
         Exercise exercise = new Exercise();
@@ -60,10 +63,11 @@ public class ExerciseService {
     }
 
     public void deleteExercise(Long id){
+        List<User> traineesHavingExercise = userRepository.findAllByExercisesId(id);
+        if (!traineesHavingExercise.isEmpty()){
+            throw new ResourceInUseException("Exercise is in use! Cannot remove it right now!",id);
+        }
         Optional<Exercise> exercise = exerciseRepository.findById(id);
-
-        //is in use TODO
-
         exerciseRepository.deleteById(id);
     }
 }
