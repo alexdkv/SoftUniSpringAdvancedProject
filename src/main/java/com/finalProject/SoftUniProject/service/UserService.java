@@ -9,6 +9,7 @@ import com.finalProject.SoftUniProject.repository.RoleRepository;
 import com.finalProject.SoftUniProject.repository.UserRepository;
 import com.finalProject.SoftUniProject.service.exception.IllegalStateException;
 import org.modelmapper.ModelMapper;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,9 +18,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class UserService {
@@ -27,6 +27,7 @@ public class UserService {
     private final RoleRepository roleRepository;
     private final PasswordEncoder passwordEncoder;
     private final ModelMapper modelMapper;
+    private List<User> randomCoaches;
 
     public UserService(UserRepository userRepository, RoleRepository roleRepository, PasswordEncoder passwordEncoder, ModelMapper modelMapper) {
         this.userRepository = userRepository;
@@ -65,6 +66,21 @@ public class UserService {
     public List<User> findAllCoaches(){
         Role role = roleRepository.findByName(UserRoleENUM.COACH).get();
         return userRepository.findAllByRole(role);
+    }
+
+    @Scheduled(fixedRate = 600000)
+    public void updateRandomCoaches(){
+        List<User> coaches = findAllCoaches();
+        if (coaches.size() <= 3){
+            randomCoaches = coaches;
+        }
+
+        Collections.shuffle(coaches, new Random());
+        randomCoaches = coaches.stream().limit(3).collect(Collectors.toList());
+    }
+
+    public List<User> getRandomCoaches() {
+        return randomCoaches;
     }
 
     public User findById(long id){
