@@ -74,7 +74,6 @@ public class UserService {
         if (coaches.size() <= 3){
             randomCoaches = coaches;
         }
-
         Collections.shuffle(coaches, new Random());
         randomCoaches = coaches.stream().limit(3).collect(Collectors.toList());
     }

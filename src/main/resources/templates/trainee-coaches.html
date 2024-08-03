@@ -14,7 +14,7 @@
                 <div class="card h-100">
                     <img th:src="${coach.photoUrl}" th:alt="${coach.username}" class="card-img-top" alt="Coach Photo">
                     <div class="card-body">
-                        <h5 class="card-title" th:text="${coach.username}">Coach Name</h5>
+                        <h5 class="card-title" th:text="${coach.fullName}">Coach Name</h5>
                         <h6 class="card-subtitle mb-2 text-muted" th:text="${coach.specialty}">Specialty</h6>
                         <p class="card-text" th:text="${coach.bio}">Brief biography of the coach.</p>
                             <form th:method="get" th:action="@{/coach/preview/{id}(id=${coach.id})}">

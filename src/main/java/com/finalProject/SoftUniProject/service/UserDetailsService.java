@@ -40,20 +40,6 @@ public class UserDetailsService implements org.springframework.security.core.use
                 .disabled(false)
                 .build();
 
-        /*
-        return new com.finalProject.SoftUniProject.model.UserDetails(
-                user.getEmail(),
-                user.getPassword(),
-                user.getRole().stream().map(r -> r.).map(UserDetailsService::map).toList());
-
-         */
-    }
-/*
-    private static GrantedAuthority map(UserRoleENUM role) {
-        return new SimpleGrantedAuthority(
-                "ROLE_" + role
-        );
     }
 
- */
 }
