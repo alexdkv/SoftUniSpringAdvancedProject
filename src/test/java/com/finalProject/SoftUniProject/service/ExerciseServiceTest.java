@@ -129,9 +129,9 @@ public class ExerciseServiceTest {
     @Test
     void testFindByCoach() {
         User coach = new User();
-        Exercise exercise1 = new Exercise();
-        Exercise exercise2 = new Exercise();
-        List<Exercise> exercises = Arrays.asList(exercise1, exercise2);
+        Exercise exerciseOne = new Exercise();
+        Exercise exerciseTwo = new Exercise();
+        List<Exercise> exercises = Arrays.asList(exerciseOne, exerciseTwo);
 
         when(mockExerciseRepository.findByCoach(coach)).thenReturn(exercises);
 
@@ -154,5 +154,25 @@ public class ExerciseServiceTest {
 
         assertEquals(exercises, result);
         verify(mockExerciseRepository, times(1)).findByCoachNot(coach);
+    }
+
+    @Test
+    void testFindByIdSuccess(){
+        Long id = 1L;
+        Exercise exercise = new Exercise();
+        when(mockExerciseRepository.findById(id)).thenReturn(Optional.of(exercise));
+
+        Exercise result = toTest.findById(id);
+        Assertions.assertEquals(exercise, result);
+    }
+
+    @Test
+    void testFindByIdNotFound() throws NoSuchElementException{
+        Long id = 1L;
+        when(mockExerciseRepository.findById(id)).thenReturn(Optional.empty());
+        Assertions.assertThrows(NoSuchElementException.class,
+                () ->{
+            toTest.findById(id);
+                });
     }
 }
