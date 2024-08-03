@@ -5,10 +5,7 @@ import com.finalProject.SoftUniProject.service.SupplementService;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -45,5 +42,11 @@ public class SupplementController {
         ModelAndView modelAndView = new ModelAndView("supplement-details");
         modelAndView.addObject("supplement",supplementService.getSupplementById(id));
         return modelAndView;
+    }
+
+    @DeleteMapping("/supplement/{id}")
+    public ModelAndView supplementDelete(@PathVariable("id")Long id){
+        supplementService.deleteSupplement(id);
+        return new ModelAndView("redirect:/supplements");
     }
 }

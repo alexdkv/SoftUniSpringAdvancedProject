@@ -57,4 +57,11 @@ public class SupplementService {
                 .retrieve()
                 .body(SupplementDTO.class);
     }
+
+    public void deleteSupplement(Long id) {
+        supplementRestClient
+                .delete()
+                .uri("http://localhost:8081/supplement/{id}", id)
+                .retrieve();
+    }
 }

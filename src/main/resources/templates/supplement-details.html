@@ -20,6 +20,9 @@
                                 <h1 class="card-title" th:text="${supplement.name}">Supplement Name</h1>
                                 <p class="card-text" th:text="${supplement.description}">Supplement's description</p>
                                 <p class="card-text"><strong>Calories per serving:</strong> <span th:text="${supplement.caloriesPerServing}">Calories Per Serving</span></p>
+                                <form th:method="delete" th:action="@{/supplement/{id}(id=${supplement.id})}">
+                                    <button type="submit" class="btn btn-danger">Remove</button>
+                                </form>
                             </div>
                         </div>
                     </div>
