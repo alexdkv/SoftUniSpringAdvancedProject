@@ -1,7 +1,6 @@
 package com.finalProject.SoftUniProject.model.entity;
 
 import com.finalProject.SoftUniProject.model.enums.SpecialtyName;
-import com.finalProject.SoftUniProject.model.enums.UserRoleENUM;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import org.hibernate.validator.constraints.Length;
@@ -25,9 +24,11 @@ public class User extends BaseEntity{
     @Column(unique = true, nullable = false)
     private String email;
 
-    @ManyToOne
-    @JoinColumn(name = "role_id", nullable = false)
-    private Role role;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "users_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    private List<Role> role;
 
     @ManyToOne
     private User coach;
@@ -90,11 +91,11 @@ public class User extends BaseEntity{
         this.coach = coach;
     }
 
-    public Role getRole() {
+    public List<Role> getRole() {
         return role;
     }
 
-    public void setRole(Role role) {
+    public void setRole(List<Role> role) {
         this.role = role;
     }
 

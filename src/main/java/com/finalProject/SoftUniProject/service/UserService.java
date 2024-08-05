@@ -58,7 +58,7 @@ public class UserService {
         Role role = roleRepository.findByName(userRegistrationDTO.getRole())
                 .orElseThrow(() -> new IllegalArgumentException("Invalid Role"));
 
-        mappedEntity.setRole(role);
+        mappedEntity.setRole(Collections.singletonList(role));
 
         return mappedEntity;
     }
