@@ -1,6 +1,7 @@
 package com.finalProject.SoftUniProject.service;
 
 import com.finalProject.SoftUniProject.model.dto.UserRegistrationDTO;
+import com.finalProject.SoftUniProject.model.entity.Exercise;
 import com.finalProject.SoftUniProject.model.entity.Role;
 import com.finalProject.SoftUniProject.model.entity.User;
 import com.finalProject.SoftUniProject.model.enums.SpecialtyName;
@@ -19,6 +20,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -146,6 +149,34 @@ public class UserServiceTest {
         assertTrue(firstRegistrationResult);
         assertFalse(secondRegistrationResult);
     }
+
+    @Test
+    void testGetAllCoaches(){
+        Role coachRole = new Role();
+        coachRole.setId(2L);
+        coachRole.setName(UserRoleENUM.COACH);
+
+        User coachTestOne = new User();
+        coachTestOne.setEmail("testOne@test.com");
+        coachTestOne.setRole(coachRole);
+
+        User coachTestTwo = new User();
+        coachTestTwo.setEmail("testTwo@test.com");
+        coachTestTwo.setRole(coachRole);
+
+        List<User> coaches = new ArrayList<>();
+        coaches.add(coachTestOne);
+        coaches.add(coachTestTwo);
+
+        when(mockRoleRepository.findByName(UserRoleENUM.COACH)).thenReturn(Optional.of(coachRole));
+        when(mockUserRepository.findAllByRole(coachRole)).thenReturn(coaches);
+
+        List<User> actualCoaches = toTest.findAllCoaches();
+
+        Assertions.assertFalse(actualCoaches.isEmpty());
+        Assertions.assertEquals(coaches, actualCoaches);
+    }
+
 
     private static UserRegistrationDTO getUserRegistrationDTO() {
         UserRegistrationDTO userRegistrationDTO;

@@ -25,7 +25,7 @@
             <li sec:authorize="isAuthenticated() and hasRole('TRAINEE')">
                 <a href="/exercises-trainee" th:text="#{nav_bar_exercises}">Exercises</a>
             </li>
-            <li sec:authorize="isAuthenticated() and hasRole('COACH')">
+            <li sec:authorize="isAuthenticated() and hasRole('COACH') ">
                 <a href="/exercises-coach" th:text="#{nav_bar_exercises}">Exercises</a>
             </li>
             <li sec:authorize="isAuthenticated() and hasRole('COACH')">
@@ -34,7 +34,7 @@
             <li sec:authorize="isAuthenticated() and hasRole('COACH')">
                 <a href="/equipment-add" th:text="#{nav_bar_equipment_add}">Add Equipment</a>
             </li>
-            <li sec:authorize="isAuthenticated() ">
+            <li sec:authorize="isAuthenticated() and hasRole('ADMIN')">
                 <a href="/supplement-add" th:text="#{nav_bar_supplement_add}">Add Supplement</a>
             </li>
             <li sec:authorize="isAuthenticated() ">
