@@ -1,5 +1,6 @@
 package com.finalProject.SoftUniProject.web;
 
+import com.finalProject.SoftUniProject.service.exception.IllegalArgumentException;
 import com.finalProject.SoftUniProject.service.exception.IllegalStateException;
 import com.finalProject.SoftUniProject.service.exception.ResourceInUseException;
 import org.springframework.http.HttpStatus;
@@ -25,5 +26,11 @@ public class GlobalExceptionHandler {
         ModelAndView modelAndView = new ModelAndView("illegal-state-coach-assigned");
         modelAndView.addObject("objectId", illegalStateException.getId());
         return modelAndView;
+    }
+
+    @ResponseStatus(code = HttpStatus.INTERNAL_SERVER_ERROR)
+    @ExceptionHandler(IllegalArgumentException.class)
+    public ModelAndView handleIllegalArgumentExceptionTraineeToCoach(IllegalArgumentException illegalArgumentException){
+        return new ModelAndView("illegal-argument-trainee-to-coach-exception");
     }
 }

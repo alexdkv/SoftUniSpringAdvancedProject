@@ -50,7 +50,7 @@ public class UserServiceIT {
         user.setUsername("testTrainee");
         user.setEmail("user@test.com");
         user.setPassword("test");
-        user.setRole(traineeRole);
+        user.setRole(List.of(traineeRole));
 
         user = userRepository.save(user);
 
@@ -58,7 +58,7 @@ public class UserServiceIT {
         coach.setUsername("testCoach");
         coach.setEmail("coach@test.com");
         coach.setPassword("test");
-        coach.setRole(coachRole);
+        coach.setRole(List.of(coachRole));
 
         Exercise exerciseTestOne = new Exercise();
         exerciseTestOne.setName("testOne");

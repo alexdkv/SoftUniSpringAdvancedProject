@@ -7,6 +7,7 @@ import com.finalProject.SoftUniProject.model.entity.User;
 import com.finalProject.SoftUniProject.model.enums.UserRoleENUM;
 import com.finalProject.SoftUniProject.repository.RoleRepository;
 import com.finalProject.SoftUniProject.repository.UserRepository;
+import com.finalProject.SoftUniProject.service.exception.IllegalArgumentException;
 import com.finalProject.SoftUniProject.service.exception.IllegalStateException;
 import org.modelmapper.ModelMapper;
 import org.springframework.scheduling.annotation.Scheduled;
@@ -135,5 +136,65 @@ public class UserService {
 
         }
         return email;
+    }
+
+    public List<User> getAllUsers(){
+        return userRepository.findAll();
+    }
+
+    @Transactional
+    public void changeUserRole(Long id) {
+        User user = userRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid user ID"));
+
+        Role traineeRole = new Role();
+        traineeRole.setId(1L);
+        traineeRole.setName(UserRoleENUM.TRAINEE);
+
+        Role coachRole = new Role();
+        coachRole.setId(2L);
+        coachRole.setName(UserRoleENUM.COACH);
+
+        Role adminRole = new Role();
+        adminRole.setId(3L);
+        adminRole.setName(UserRoleENUM.ADMIN);
+
+
+        if (user.getRole().contains(traineeRole)) {
+            user.getRole().remove(traineeRole);
+            user.getRole().add(coachRole);
+        } else if (user.getRole().contains(coachRole) && !user.getRole().contains(adminRole)) {
+            user.getRole().remove(coachRole);
+            user.getRole().add(traineeRole);
+        }
+
+        userRepository.save(user);
+    }
+
+    @Transactional
+    public void promoteToAdmin(Long id) {
+        User user = userRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Invalid user ID"));
+
+
+        Role adminRole = new Role();
+        adminRole.setId(3L);
+        adminRole.setName(UserRoleENUM.ADMIN);
+
+        if (user.getRole().contains(adminRole)){
+            return;
+        }
+
+        Role coachRole = new Role();
+        coachRole.setId(2L);
+        coachRole.setName(UserRoleENUM.COACH);
+
+        if (user.getRole().contains(coachRole)) {
+            user.getRole().add(adminRole);
+        } else {
+            throw new IllegalArgumentException("User is not a COACH and cannot be promoted to ADMIN.");
+        }
+
+        userRepository.save(user);
+
     }
 }

@@ -28,13 +28,18 @@ public class UserRegistrationDTO {
     @NotNull(message = "Role must be selected!")
     private UserRoleENUM role;
 
-    @URL
+    @URL(message = "Enter valid photo URL!")
+    @NotNull(message = "Must not be empty!")
     private String photoUrl;
 
     private SpecialtyName specialty;
 
+    @NotBlank(message = "Must not be empty")
+    @Size(min = 3,  message = "Bio must be more than 3 characters!")
     private String bio;
 
+    @NotBlank(message = "Must not be empty")
+    @Size(min = 3, message = "Name must be more than 3 characters!")
     private String fullName;
 
     public  String getUsername() {

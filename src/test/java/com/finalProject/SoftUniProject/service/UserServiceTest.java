@@ -21,6 +21,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -77,7 +78,7 @@ public class UserServiceTest {
         Assertions.assertNotNull(actualSavedUser);
         Assertions.assertEquals(userRegistrationDTO.getUsername(), actualSavedUser.getUsername());
         Assertions.assertEquals(userRegistrationDTO.getEmail(), actualSavedUser.getEmail());
-        Assertions.assertEquals(userRegistrationDTO.getRole(), actualSavedUser.getRole().getName());
+        Assertions.assertEquals(userRegistrationDTO.getRole(), actualSavedUser.getRole().getFirst().getName());
         Assertions.assertEquals(userRegistrationDTO.getPassword() + userRegistrationDTO.getPassword()
                 , actualSavedUser.getPassword());
 
@@ -111,7 +112,7 @@ public class UserServiceTest {
         Assertions.assertNotNull(actualSavedUser);
         Assertions.assertEquals(userRegistrationDTO.getUsername(), actualSavedUser.getUsername());
         Assertions.assertEquals(userRegistrationDTO.getEmail(), actualSavedUser.getEmail());
-        Assertions.assertEquals(userRegistrationDTO.getRole(), actualSavedUser.getRole().getName());
+        Assertions.assertEquals(userRegistrationDTO.getRole(), actualSavedUser.getRole().getFirst().getName());
         Assertions.assertEquals(userRegistrationDTO.getPassword() + userRegistrationDTO.getPassword()
                 , actualSavedUser.getPassword());
         Assertions.assertEquals(userRegistrationDTO.getBio(), actualSavedUser.getBio());
@@ -158,11 +159,11 @@ public class UserServiceTest {
 
         User coachTestOne = new User();
         coachTestOne.setEmail("testOne@test.com");
-        coachTestOne.setRole(coachRole);
+        coachTestOne.setRole(List.of(coachRole));
 
         User coachTestTwo = new User();
         coachTestTwo.setEmail("testTwo@test.com");
-        coachTestTwo.setRole(coachRole);
+        coachTestTwo.setRole(List.of(coachRole));
 
         List<User> coaches = new ArrayList<>();
         coaches.add(coachTestOne);
