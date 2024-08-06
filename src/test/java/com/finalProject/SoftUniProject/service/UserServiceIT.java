@@ -43,7 +43,7 @@ public class UserServiceIT {
         traineeRole.setName(UserRoleENUM.TRAINEE);
 
         Role coachRole = new Role();
-        coachRole.setId(1L);
+        coachRole.setId(2L);
         coachRole.setName(UserRoleENUM.COACH);
 
         User user = new User();

@@ -178,6 +178,27 @@ public class UserServiceTest {
         Assertions.assertEquals(coaches, actualCoaches);
     }
 
+    @Test
+    void testFindByIdSuccessful(){
+        User testUser = new User();
+        testUser.setUsername("test");
+        testUser.setEmail("test@test");
+        testUser.setPassword("test");
+        testUser.setFullName("Test");
+        testUser.setBio("test");
+        testUser.setPhotoUrl("https://test/test");
+        when(mockUserRepository.findById(1L)).thenReturn(Optional.of(testUser));
+
+        User savedUser = toTest.findById(1L);
+
+        Assertions.assertNotNull(savedUser);
+        Assertions.assertEquals(testUser.getEmail(), savedUser.getEmail());
+        Assertions.assertEquals(testUser.getUsername(), savedUser.getUsername());
+        Assertions.assertEquals(testUser.getFullName(), savedUser.getFullName());
+        Assertions.assertEquals(testUser.getBio(), savedUser.getBio());
+        Assertions.assertEquals(testUser.getPhotoUrl(), savedUser.getPhotoUrl());
+
+    }
 
     private static UserRegistrationDTO getUserRegistrationDTO() {
         UserRegistrationDTO userRegistrationDTO;

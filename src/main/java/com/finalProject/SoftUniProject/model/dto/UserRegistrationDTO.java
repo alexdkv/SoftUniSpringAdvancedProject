@@ -42,6 +42,9 @@ public class UserRegistrationDTO {
     @Size(min = 3, message = "Name must be more than 3 characters!")
     private String fullName;
 
+    public UserRegistrationDTO() {
+    }
+
     public  String getUsername() {
         return username;
     }
