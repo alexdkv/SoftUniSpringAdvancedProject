@@ -12,7 +12,7 @@ import java.util.List;
 public class Exercise extends BaseEntity{
 
     @Column(nullable = false)
-    @Length(min = 3, max = 20)
+    @Length(min = 3, max = 50)
     private String name;
 
     @Column(nullable = false)

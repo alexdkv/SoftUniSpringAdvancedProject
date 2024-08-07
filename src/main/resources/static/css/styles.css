@@ -1,12 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=PT+Sans|PT+Serif);
 
-/*
-    #d01919 - cherveno
-    #d03045 - cherveno bukvi
-    #efefef - siv background
-    #a9a7b3 - siv bukvi
-*/
-
 /* HEADER */
 * {
   margin: 0;
@@ -45,7 +38,7 @@ header .socials a {
 
 main {
   background-image: url(/images/fitness-main.jpg);
-  height: 550px;
+  height: 700px;
   width: 100%;
   background-position: center center;
   background-repeat: no-repeat;

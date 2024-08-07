@@ -4,7 +4,7 @@ import com.finalProject.SoftUniProject.model.entity.Equipment;
 import jakarta.validation.constraints.Size;
 
 public class ExerciseAddBindingModel {
-    @Size(min = 3, max = 20, message = "Exercise name must be between 3 and 20 characters!")
+    @Size(min = 3, max = 50, message = "Exercise name must be between 3 and 50 characters!")
     private String name;
 
     @Size(min = 3, message = "Description must be more than 3 characters!")

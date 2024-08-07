@@ -15,10 +15,7 @@
 <header>
     <nav>
         <div class="home">
-            <li>
                 <a href="/home" th:text="#{nav_bar_home}">Fitness</a>
-            </li>
-
         </div>
 
         <div class="links">
@@ -68,8 +65,8 @@
                             id="lang"
                             name="lang"
                             onchange="this.form.submit()">
-                        <option value="en_US" th:selected="${#locale.toString()} == 'en_US'">English</option>
-                        <option value="bg_BG" th:selected="${#locale.toString()} == 'bg_BG'">Български</option>
+                        <option value="en_US" th:selected="${#locale.toString()} == 'en_US'">ENG</option>
+                        <option value="bg_BG" th:selected="${#locale.toString()} == 'bg_BG'">BGN</option>
                     </select>
                 </form>
 

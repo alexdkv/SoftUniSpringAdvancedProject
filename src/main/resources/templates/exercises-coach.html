@@ -15,28 +15,27 @@
                         <tr>
                             <th>Image</th>
                             <th>Name</th>
-                            <th>Description</th>
                             <th>Intensity</th>
-                            <th>Remove</th>
                             <th>Preview</th>
+                            <th>Remove</th>
                         </tr>
                         </thead>
                         <tbody>
                         <tr th:each="exercise : ${myExercises}">
                             <td><img th:src="${exercise.photoUrl}" th:alt="${exercise.name}" width="35" height="35"></td>
                             <td th:text="${exercise.name}">Exercise Name</td>
-                            <td th:text="${exercise.description}">Description</td>
                             <td th:text="${exercise.intensity}">Intensity</td>
+                            <td>
+                            <form th:method="get" th:action="@{/exercise/preview/{id}(id=${exercise.id})}">
+                                <button type="submit" class="btn btn-danger">Preview</button>
+                            </form>
+                            </td>
                             <td>
                                 <form th:method="delete" th:action="@{/exercise/delete/{id}(id=${exercise.id})}">
                                     <button type="submit" class="btn btn-danger">Remove</button>
                                 </form>
                             </td>
-                            <td>
-                                <form th:method="get" th:action="@{/exercise/preview/{id}(id=${exercise.id})}">
-                                    <button type="submit" class="btn btn-danger">Preview</button>
-                                </form>
-                            </td>
+
                         </tr>
                         </tbody>
                     </table>
@@ -51,7 +50,6 @@
                         <tr>
                             <th>Image</th>
                             <th>Name</th>
-                            <th>Description</th>
                             <th>Intensity</th>
                             <th>Preview</th>
                         </tr>
@@ -60,7 +58,6 @@
                         <tr th:each="exercise : ${otherExercises}">
                             <td><img th:src="${exercise.photoUrl}" th:alt="${exercise.name}" width="35" height="35"></td>
                             <td th:text="${exercise.name}">Exercise Name</td>
-                            <td th:text="${exercise.description}">Description</td>
                             <td th:text="${exercise.intensity}">Intensity</td>
 
                             <td>
