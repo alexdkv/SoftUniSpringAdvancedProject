@@ -13,13 +13,12 @@
 </head>
 <body>
 <header>
-    <nav>
+    <nav >
         <div class="home">
                 <a href="/home" th:text="#{nav_bar_home}">Fitness</a>
         </div>
 
         <div class="links">
-
 
             <li sec:authorize="isAuthenticated() and hasRole('TRAINEE')">
                 <a href="/trainee-coaches" th:text="#{nav_bar_coach}">Coach</a>
@@ -31,22 +30,16 @@
                 <a href="/exercises-coach" th:text="#{nav_bar_exercises}">Exercises</a>
             </li>
             <li sec:authorize="isAuthenticated() and hasRole('COACH')">
-                <a href="/exercise-add" th:text="#{nav_bar_exercise_add}">Add Exercise</a>
-            </li>
-            <li sec:authorize="isAuthenticated() and hasRole('COACH')">
                 <a href="/equipment-add" th:text="#{nav_bar_equipment_add}">Add Equipment</a>
-            </li>
-            <li sec:authorize="isAuthenticated() and hasRole('ADMIN')">
-                <a href="/supplement-add" th:text="#{nav_bar_supplement_add}">Add Supplement</a>
             </li>
             <li sec:authorize="isAuthenticated() ">
                 <a href="/supplements" th:text="#{nav_bar_supplements}">Supplements</a>
             </li>
-            <li sec:authorize="!isAuthenticated()">
-                <a href="/login" th:text="#{nav_bar_login}">Login</a>
-            </li>
             <li sec:authorize="isAuthenticated() and hasRole('ADMIN') ">
                 <a href="/admin/all-users" th:text="#{nav_bar_admin_users}">All Users</a>
+            </li>
+            <li sec:authorize="!isAuthenticated()">
+            <a href="/login" th:text="#{nav_bar_login}">Login</a>
             </li>
             <li sec:authorize="!isAuthenticated()">
                 <a href="/register" th:text="#{nav_bar_register}">Register</a>

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
 <head th:replace="fragments/navbar::head"></head>
 <body>
 <header th:replace="fragments/navbar::nav"></header>
@@ -9,7 +10,11 @@
 
             <div class="col-6">
                 <div class="home-fields" style="height: 40vh; overflow: auto">
-                    <h3 class="text-white">My Exercises</h3>
+                    <div class="title-button">
+                        <h3 class="text-white" th:text="#{my_exercises}">My Exercises</h3>
+                        <a sec:authorize="isAuthenticated() and hasRole('COACH')" class="btn btn-info" href="/exercise-add" th:text="#{nav_bar_exercise_add}">Add Exercise</a>
+                    </div>
+
                     <table class="table table-striped table-dark">
                         <thead>
                         <tr>
@@ -27,7 +32,7 @@
                             <td th:text="${exercise.intensity}">Intensity</td>
                             <td>
                             <form th:method="get" th:action="@{/exercise/preview/{id}(id=${exercise.id})}">
-                                <button type="submit" class="btn btn-danger">Preview</button>
+                                <button type="submit" class="btn btn-info">Preview</button>
                             </form>
                             </td>
                             <td>
@@ -44,7 +49,7 @@
 
             <div class="col-6">
                 <div class="home-fields" style="height: 40vh; overflow: auto">
-                    <h3 class="text-white">Other Exercises</h3>
+                    <h3 class="text-white m-2"  th:text="#{other_exercises}">Other Exercises</h3>
                     <table class="table table-striped table-dark">
                         <thead>
                         <tr>
@@ -62,7 +67,7 @@
 
                             <td>
                                 <form th:method="get" th:action="@{/exercise/preview/{id}(id=${exercise.id})}">
-                                    <button type="submit" class="btn btn-danger">Preview</button>
+                                    <button type="submit" class="btn btn-info">Preview</button>
                                 </form>
                             </td>
                         </tr>

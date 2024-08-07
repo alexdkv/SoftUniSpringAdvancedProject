@@ -11,11 +11,11 @@
           th:method="post"
           th:action="@{/register}"
           th:object="${registerDTO}"  >
-        <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark">Register</span></h1>
+        <h1 class="text-center mt-2"><span class="badge badge-pill badge-dark" th:text="#{register_register}">Register</span></h1>
 
         <div class="form-group">
             <div class="label-holder text-white textCol d-flex justify-content-center">
-                <label for="role" class="h4 mb-2">Role</label>
+                <label for="role" class="h4 mb-2" th:text="#{register_role}">Role</label>
             </div>
             <select class="form-control" id="role" th:field="*{role}">
                 <option value="" >Select your role</option>
@@ -27,19 +27,19 @@
 
         <div class="form-group">
             <div class="label-holder textCol d-flex justify-content-center">
-                <label th:for="username" class="h4 mb-2 text-white">Username</label>
+                <label th:for="username" class="h4 mb-2 text-white" th:text="#{register_username}">Username</label>
             </div>
 
             <input type="text" class="form-control" id="username"
                     th:field="*{username}"/>
             <small th:if="${#fields.hasErrors('username')}"
                    th:errors="*{username}"
-                    class="danger" style="font-size: 15px">Username error message</small>
+                    class="danger" >Username error message</small>
         </div>
 
         <div class="form-group">
             <div class="label-holder text-white textCol d-flex justify-content-center">
-                <label th:for="email" class="h4 mb-2">Email</label>
+                <label th:for="email" class="h4 mb-2" th:text="#{register_email}">Email</label>
             </div>
             <input type="email" class="form-control" id="email"
                    th:field="*{email}"/>
@@ -50,7 +50,7 @@
 
         <div class="form-group">
             <div class="label-holder text-white textCol d-flex justify-content-center">
-                <label th:for="password" class="h4 mb-2">Password</label>
+                <label th:for="password" class="h4 mb-2" th:text="#{register_password}">Password</label>
             </div>
             <input type="password" class="form-control" id="password"
                    th:field="*{password}"/>
@@ -61,7 +61,7 @@
 
         <div class="form-group">
             <div class="label-holder text-white textCol d-flex justify-content-center">
-                <label for="confirmPassword" class="h4 mb-2">Confirm Password</label>
+                <label for="confirmPassword" class="h4 mb-2" th:text="#{register_confirm_password}">Confirm Password</label>
             </div>
             <input type="password" class="form-control" id="confirmPassword" th:field="*{confirmPassword}"/>
             <small th:if="${#fields.hasErrors('confirmPassword')}"
@@ -71,7 +71,7 @@
 
         <div class="form-group">
             <div class="label-holder text-white textCol d-flex justify-content-center">
-                <label th:for="fullName" class="h4 mb-2">Full Name</label>
+                <label th:for="fullName" class="h4 mb-2" th:text="#{register_full_name}">Full Name</label>
             </div>
             <input type="text" class="form-control" id="fullName" th:field="*{fullName}" />
             <small th:if="${#fields.hasErrors('fullName')}"
@@ -81,7 +81,7 @@
 
         <div class="form-group">
             <div class="label-holder text-white textCol d-flex justify-content-center">
-                <label th:for="photoUrl" class="h4 mb-2">Photo URL</label>
+                <label th:for="photoUrl" class="h4 mb-2" th:text="#{register_photo_url}">Photo URL</label>
             </div>
             <input type="url" class="form-control" id="photoUrl" th:field="*{photoUrl}" />
             <small th:if="${#fields.hasErrors('photoUrl')}"
@@ -91,7 +91,7 @@
 
         <div class="form-group">
             <div class="label-holder text-white textCol d-flex justify-content-center">
-                <label th:for="bio" class="h4 mb-2">Biography</label>
+                <label th:for="bio" class="h4 mb-2" th:text="#{register_biography}">Biography</label>
             </div>
             <textarea class="form-control" id="bio" th:field="*{bio}" rows="3"></textarea>
             <small th:if="${#fields.hasErrors('bio')}"
@@ -102,7 +102,7 @@
         <div id="coachFields" style="display: none;">
             <div class="form-group">
                 <div class="label-holder text-white textCol d-flex justify-content-center">
-                    <label th:for="specialty" class="h4 mb-2">Specialty</label>
+                    <label th:for="specialty" class="h4 mb-2" th:text="#{register_specialty}">Specialty</label>
                 </div>
                 <select class="form-control" id="specialty" th:field="*{specialty}">
                     <option value="">Select your specialty</option>
@@ -116,7 +116,7 @@
         </div>
 
         <div class="button-holder d-flex justify-content-center">
-            <button type="submit" value="Register">Register</button>
+            <button type="submit" value="Register" >Register</button>
         </div>
 
     </form>

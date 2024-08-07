@@ -36,14 +36,7 @@ header .socials a {
 
 /* MAIN */
 
-main {
-  background-image: url(/images/fitness-main.jpg);
-  height: 700px;
-  width: 100%;
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
-}
+
 main .main-nav {
   display: flex;
   flex-direction: row;

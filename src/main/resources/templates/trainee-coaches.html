@@ -18,7 +18,7 @@
                         <h6 class="card-subtitle mb-2 text-muted" th:text="${coach.specialty}">Specialty</h6>
                         <p class="card-text" th:text="${coach.bio}">Brief biography of the coach.</p>
                             <form th:method="get" th:action="@{/coach/preview/{id}(id=${coach.id})}">
-                                <button type="submit" class="btn btn-danger">Preview</button>
+                                <button type="submit" class="btn btn-info">Preview</button>
                             </form>
                     </div>
                 </div>

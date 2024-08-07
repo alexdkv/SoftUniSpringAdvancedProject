@@ -9,37 +9,37 @@ import org.hibernate.validator.constraints.URL;
 
 public class UserRegistrationDTO {
 
-    @NotBlank(message = "Must not be empty")
-    @Size(min = 3, max = 20, message = "Username must be between 3 and 20 characters!")
+    @NotBlank(message = "{not_empty}")
+    @Size(min = 3, max = 20, message = "{register_username_error}")
     private String username;
 
-    @NotBlank(message = "Must not be empty")
-    @Size(min = 3, max = 20, message = "Password must be between 3 and 20 characters!")
+    @NotBlank(message = "{not_empty}")
+    @Size(min = 3, max = 20, message = "{register_password_error}")
     private String password;
 
-    @NotBlank(message = "Must not be empty")
-    @Size(min = 3, max = 20, message = "Password must be between 3 and 20 characters!")
+    @NotBlank()
+    @Size(min = 3, max = 20, message = "{register_password_error}")
     private String confirmPassword;
 
-    @NotBlank(message = "Email must not be empty!")
+    @NotBlank(message = "{not_empty}")
     @Email
     private String email;
 
-    @NotNull(message = "Role must be selected!")
+    @NotNull(message = "{register_role_error}")
     private UserRoleENUM role;
 
-    @URL(message = "Enter valid photo URL!")
-    @NotNull(message = "Must not be empty!")
+    @URL(message = "{register_photo_url_error}")
+    @NotNull(message = "{not_empty}")
     private String photoUrl;
 
     private SpecialtyName specialty;
 
-    @NotBlank(message = "Must not be empty")
-    @Size(min = 3,  message = "Bio must be more than 3 characters!")
+    @NotBlank(message = "{not_empty}")
+    @Size(min = 3,  message = "{register_biography_error}")
     private String bio;
 
-    @NotBlank(message = "Must not be empty")
-    @Size(min = 3, message = "Name must be more than 3 characters!")
+    @NotBlank(message = "{not_empty}")
+    @Size(min = 3, message = "{register_full_name_error}")
     private String fullName;
 
     public UserRegistrationDTO() {

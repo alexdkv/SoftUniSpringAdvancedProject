@@ -44,12 +44,13 @@ body > nav > div.links > li {
 }
 
 body {
-    background-image: linear-gradient(rgba(0, 0, 0, 1), rgba(84, 91, 98, 0.5), rgba(84, 91, 98, 0.3)), url(/img/background-1.jpg);
-    background-position: center;
-    background-attachment: fixed;
-    background-size: cover;
-    background-repeat: no-repeat;
-    margin-bottom: 5rem;
+    background-image: url(/images/fitness-main.jpg);
+      height: 100%;
+      width: 100%;
+      position:relative;
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: cover;
 }
 
 textarea {
@@ -184,7 +185,7 @@ button:hover {
 }
 
 footer {
-    position: static;
+    position: absolute;
     bottom: 0;
     width: 100%;
 }
@@ -276,5 +277,27 @@ a:hover {
 }
 button.btn{
     padding: 5px;
-    margin: 5px;
+    margin: 10px;
+    display: block;
+}
+
+.card-img-top {
+    object-fit: contain;
+    width: 348px;
+    height: 348px;
+    border-top-left-radius: calc(.25rem - 1px);
+    border-top-right-radius: calc(.25rem - 1px);
+}
+
+.title-button {
+    margin: 8px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.danger{
+    font-size:15px;
+    font-weight: 600;
+    color: red;
 }

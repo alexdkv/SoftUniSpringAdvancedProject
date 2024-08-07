@@ -11,12 +11,14 @@
             crossorigin="anonymous"
             referrerpolicy="no-referrer"
     />
-    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="stylesheet" href="/css/reset-css.css"/>
+    <link rel="stylesheet" href="/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="/css/styles.css"/>
+    <link rel="stylesheet" href="/css/style.css"/>
 </head>
 <body>
-<head th:replace="fragments/navbar::head"></head>
 
-<header th:replace="fragments/navbar::nav"></header>
+<div th:replace="fragments/navbar::nav"></div>
 
 <main>
         <span class="main-nav">
@@ -66,34 +68,12 @@
                 <img th:src="${coach.photoUrl}" alt="Coach Photo" class="coach-photo">
                 <h5 class="name" th:text="${coach.fullName}">Coach Name</h5>
                 <h6 th:text="${coach.specialty}">Specialty</h6>
-                <p th:text="${coach.bio}">Coach bio</p>
+                <p th:text="${#strings.length(coach.bio) > 150 ? #strings.substring(coach.bio, 0, 150) + '...' : coach.bio}">Coach bio</p>
             </section>
     </div>
-            <!--
-            <section class="coach-cards">
-                <img src="/images/minela.jpg" alt="">
-                <h5 class="name">Samantha Minela</h5>
-                <h6>Yoga</h6>
-                <p>Our leading yoga coach, Samantha will help you reach full harmony with your body.</p>
-            </section>
-
-            <section class="coach-cards">
-                <img src="/images/ortiz.jpg" alt="">
-                <h5 class="name">Austin Ortiz</h5>
-                <h6>Bodybuilding</h6>
-                <p>Austin is not only our most called-for coach, but also a winner of many championships.</p>
-            </section>
-            -->
-
 
     </div>
 </div>
-
-
-
-
-<footer>
-    <p>All rights reserved. In Partnership with SoftUni.</p>
-</footer>
+<footer th:replace="fragments/navbar::footer"></footer>
 </body>
 </html>
