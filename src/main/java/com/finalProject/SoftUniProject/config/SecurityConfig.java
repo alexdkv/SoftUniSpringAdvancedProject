@@ -22,7 +22,7 @@ public class SecurityConfig {
                         authorizeRequest ->
                             authorizeRequest
                                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
-                                .requestMatchers("/", "/index", "/register", "/login", "/login-error").permitAll()
+                                .requestMatchers("/", "/index", "/register", "/login", "/login-error", "/socketTest", "ws://localhost:8080/signal", "/signal").permitAll()
                                 .anyRequest()
                                 .authenticated()
         )
