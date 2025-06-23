@@ -34,3 +34,9 @@ server:
   supplements:
     api:
       baseUrl: "http://localhost:8081"
+
+jwt:
+  secret: 0ea38897925118e4ab1d18f5a13b6cd50094b326df9655222a9cb7dcb2c1e9ff
+
+remember:
+  key: rememberme
