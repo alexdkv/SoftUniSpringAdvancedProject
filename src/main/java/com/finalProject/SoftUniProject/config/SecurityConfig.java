@@ -1,5 +1,6 @@
 package com.finalProject.SoftUniProject.config;
 
+import com.finalProject.SoftUniProject.model.enums.UserRoleENUM;
 import com.finalProject.SoftUniProject.repository.UserRepository;
 import com.finalProject.SoftUniProject.service.UserDetailsService;
 import com.finalProject.SoftUniProject.service.jwt.JwtAuthenticationFilter;
@@ -44,9 +45,14 @@ public class SecurityConfig {
                             authorizeRequest
                                 .requestMatchers(PathRequest.toStaticResources().atCommonLocations()).permitAll()
                                 .requestMatchers("/", "/index", "/register", "/login", "/login-error", "/socketTest", "ws://localhost:8080/signal", "/signal").permitAll()
+                                    .requestMatchers("/exercises-trainee", "/coach-preview", "/trainee-coaches").hasRole(UserRoleENUM.TRAINEE.name())
+                                    .requestMatchers("/equipment-add", "/exercise-add").hasRole(UserRoleENUM.COACH.name())
+                                    .requestMatchers("/exercises-coach").hasRole(UserRoleENUM.COACH.name())
+                                    .requestMatchers("/all-users", "/supplement-add").hasRole(UserRoleENUM.ADMIN.name())
                                 .anyRequest()
                                 .authenticated()
-        ).authenticationProvider(authenticationProvider).addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
+        ).authenticationProvider(authenticationProvider)
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
         .formLogin(formLogin ->
                 formLogin
                         .loginPage("/login")
@@ -54,8 +60,7 @@ public class SecurityConfig {
                         .passwordParameter("password")
                         .defaultSuccessUrl("/home", true)
                         .failureUrl("/login-error")
-        )
-        .logout(
+        ).logout(
                 logout ->
                         logout
                                 .logoutUrl("/logout")

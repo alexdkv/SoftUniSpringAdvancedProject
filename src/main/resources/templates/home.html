@@ -27,6 +27,7 @@
     <div class="main-container">
         <body >
         <h1 class="display-1" th:text="#{welcome_message}">Welcome</h1>
+        <a class="button">TEST TO NODE</a>
         <th:block sec:authorize="isAuthenticated()" >
             <span class="display-4"> [[${#authentication.name}]]</span>
         </th:block>
