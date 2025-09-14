@@ -58,7 +58,7 @@ main .main-container {
   width: 100%;
   margin-top: 50px;
   padding: 50px;
-  padding-bottom: 160px;
+  padding-bottom: 50px;
 }
 main h2 {
   font-size: 60px;
@@ -75,6 +75,27 @@ main .button {
   background-color: #d01919;
   padding: 7px 13px;
   margin: 30px;
+}
+
+a.button-link {
+  display: inline-block;            /* make it behave like a button */
+  padding: 10px 20px;               /* space inside */
+  background-color: #d03045;        /* button color */
+  color: #fff;                      /* text color */
+  text-decoration: none;            /* remove underline */
+  border-radius: 8px;               /* rounded corners */
+  font-weight: 500;                 /* slightly bold text */
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+a.button-link:hover {
+  background-color: #0056b3;        /* darker on hover */
+  transform: translateY(-2px);      /* subtle lift effect */
+}
+
+a.button-link:active {
+  background-color: #004494;        /* even darker on click */
+  transform: translateY(0);         /* reset lift */
 }
 
 /* WELCOME */
@@ -221,9 +242,10 @@ main .button {
 footer {
   background-color: #d01919;
   width: 100%;
-  height: 30px;
+
 }
 footer p {
   text-align: center;
-  padding-top: 5px;
+  padding: 3px;
+  margin: 0;
 }

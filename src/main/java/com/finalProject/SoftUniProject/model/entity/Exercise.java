@@ -42,7 +42,6 @@ public class Exercise extends BaseEntity{
 
     public Exercise() {
         this.users = new ArrayList<>();
-
     }
 
     public String getName() {

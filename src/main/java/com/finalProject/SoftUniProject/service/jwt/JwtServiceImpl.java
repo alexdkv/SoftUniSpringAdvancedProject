@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 
+import javax.crypto.SecretKey;
+import java.nio.charset.StandardCharsets;
 import java.security.Key;
 import java.util.Date;
 import java.util.HashMap;
@@ -19,12 +21,14 @@ import java.util.function.Function;
 @Service
 public class JwtServiceImpl implements JwtService{
 
-    @Value("${jwt.secret}")
-    private String secretKey;
+    //@Value("${jwt.secret}")
+    String secret = "0ea38897925118e4ab1d18f5a13b6cd50094b326df9655222a9cb7dcb2c1e9ff";
+
+    private final SecretKey secretKey = Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));
 
     @Override
     public String generateToken(User user) {
-        return "Bearer-" + generateTokenValue(new HashMap<>(), user.getUsername());
+        return /*"Bearer-" +*/ generateTokenValue(new HashMap<>(), user.getUsername());
     }
 
     @Override
@@ -40,7 +44,7 @@ public class JwtServiceImpl implements JwtService{
 
     @Override
     public String generateTokenFromUsername(String username) {
-        return "Bearer-" + generateTokenValue(new HashMap<>(), username);
+        return /*"Bearer-" +*/ generateTokenValue(new HashMap<>(), username);
     }
 
     private String generateTokenValue(Map<String, Object> claims, String username){
@@ -49,13 +53,13 @@ public class JwtServiceImpl implements JwtService{
                 .setSubject(username)
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis() + 1000 * 60 * 60))
-                .signWith(getSignKey(), SignatureAlgorithm.HS256)
+                .signWith(secretKey, SignatureAlgorithm.HS256)
                 .compact();
     }
 
     private Claims extractAllClaims(String token){
         return Jwts.parserBuilder()
-                .setSigningKey(getSignKey())
+                .setSigningKey(secretKey)
                 .build()
                 .parseClaimsJws(token)
                 .getBody();
@@ -75,7 +79,7 @@ public class JwtServiceImpl implements JwtService{
     }
 
     private Key getSignKey() {
-        byte[] keyBytes = Decoders.BASE64.decode(secretKey);
+        byte[] keyBytes = Decoders.BASE64.decode(secret);
         return Keys.hmacShaKeyFor(keyBytes);
     }
 }

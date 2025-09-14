@@ -45,12 +45,15 @@ body > nav > div.links > li {
 
 body {
     background-image: url(/images/fitness-main.jpg);
-      height: 100%;
-      width: 100%;
-      position:relative;
-      background-position: center center;
-      background-repeat: no-repeat;
-      background-size: cover;
+    height: 100%;
+    width: 100%;
+    position:relative;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 textarea {
@@ -70,6 +73,7 @@ textarea {
     text-align: center;
     margin-right: auto;
     margin-left: auto;
+    margin-bottom: 100px;
     box-shadow: 0 4px 16px black;
     z-index: 1;
 }
@@ -184,11 +188,23 @@ button:hover {
     color: rgb(218, 218, 218);
 }
 
-footer {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
+.footer {
+  background-color: gray;
+  text-align: center;
+  padding: 5px 0;
+  margin-top: auto;
+  font-size: 14px;
 }
+
+.footer a {
+  color: white;
+  text-decoration: none;
+}
+
+.footer a:hover {
+  text-decoration: underline;
+}
+
 
 .img-thumb {
     padding: .25rem;

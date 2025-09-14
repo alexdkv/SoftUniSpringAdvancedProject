@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns:https="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -67,12 +67,15 @@
         </div>
     </nav>
 </header>
-<footer class="footer bg-transparent py-2">
-    <div class="container-fluid text-center">
-        <div class="footer-background footer-text fixed-bottom">
-            &copy; Spring team 2024. All rights reserved.
-        </div>
-    </div>
+
+<footer class="footer">
+
+    <p>
+        <span th:text="#{footer_made_by}">Made by:</span>
+        <a href="https://github.com/alexdkv" th:text="#{footer_made_by_name}">Aleksander Dekov</a>
+    </p>
+    <p th:text="#{footer_rights}">All rights reserved! 2025</p>
 </footer>
 </body>
+
 </html>

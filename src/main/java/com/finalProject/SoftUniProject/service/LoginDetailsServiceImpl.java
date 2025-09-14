@@ -34,10 +34,12 @@ public class LoginDetailsServiceImpl implements UserDetailsService {
         UserDetails userDetails = user.map(LoginDetailsServiceImpl::map)
                 .orElseThrow(() -> new UsernameNotFoundException("User with username: " + username + " does not exist."));
         Cookie cookie = new Cookie("jwt", jwtService.generateToken(user.get()));
-        cookie.setMaxAge(60*60*24);
+        cookie.setMaxAge(60*60*24*1000);
+        //cookie.setDomain("localhost");
+        //cookie.setDomain("192.168.0.151");
         cookie.setPath("/");
         cookie.setHttpOnly(true);
-        cookie.setSecure(true);
+        //cookie.setSecure(true);
         response.addCookie(cookie);
         return userDetails;
     }

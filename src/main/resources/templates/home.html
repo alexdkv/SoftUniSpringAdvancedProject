@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -27,13 +27,16 @@
     <div class="main-container">
         <body >
         <h1 class="display-1" th:text="#{welcome_message}">Welcome</h1>
-        <a class="button">TEST TO NODE</a>
         <th:block sec:authorize="isAuthenticated()" >
             <span class="display-4"> [[${#authentication.name}]]</span>
         </th:block>
         <th:block sec:authorize="!isAuthenticated()" class="display-1">
             <span class="display-4"> Anonymous </span>
         </th:block>
+        <div>
+            <a class="button-link" sec:authorize="isAuthenticated() and hasRole('TRAINEE')" href="https://172.20.10.3:8181/receiver.ejs">Livestream</a>
+            <a class="button-link" sec:authorize="isAuthenticated() and hasRole('COACH')" href="https://172.20.10.3:8181/caller.ejs">Livestream</a>
+        </div>
         </body>
     </div>
 </main>
@@ -75,6 +78,7 @@
 
     </div>
 </div>
+
 <footer th:replace="fragments/navbar::footer"></footer>
 </body>
 </html>
